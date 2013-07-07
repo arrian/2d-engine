@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A3BED461-795E-4605-9620-0554F04E54F8}</ProjectGuid>
+    <RootNamespace>Survive</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Dev\Allegro\allegro-5.0.9-msvc-10.0\include;C:\Dev\Box2D\Box2D_v2.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Dev\Allegro\allegro-5.0.9-msvc-10.0\lib;C:\Dev\Box2D\Box2D_v2.2.1\Build\vs2010\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\Dev\Allegro\allegro-5.0.9-msvc-10.0\include;C:\Dev\Box2D\Box2D_v2.2.1</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Dev\Allegro\allegro-5.0.9-msvc-10.0\lib;C:\Dev\Box2D\Box2D_v2.2.1\Build\vs2010\bin</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AggressiveCreature.h" />
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="Climbable.h" />
+    <ClInclude Include="Creature.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="DataItem.h" />
+    <ClInclude Include="DataType.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="Dynamic.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="ImageUtil.h" />
+    <ClInclude Include="Json.h" />
+    <ClInclude Include="JsonBlockAllocator.h" />
+    <ClInclude Include="JsonUtil.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="PhysicsContactListener.h" />
+    <ClInclude Include="PhysicsDebugDraw.h" />
+    <ClInclude Include="PhysicsRayCast.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="Id.h" />
+    <ClInclude Include="Interactive.h" />
+    <ClInclude Include="InteractiveCreature.h" />
+    <ClInclude Include="CellLoader.h" />
+    <ClInclude Include="MapUtil.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MapMenu.h" />
+    <ClInclude Include="PassiveCreature.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="ShapeRectangle.h" />
+    <ClInclude Include="ShapeImage.h" />
+    <ClInclude Include="ShapeImageAnimated.h" />
+    <ClInclude Include="ShapeLine.h" />
+    <ClInclude Include="ShapeLineStrip.h" />
+    <ClInclude Include="ShapePoint.h" />
+    <ClInclude Include="ShapeType.h" />
+    <ClInclude Include="Sky.h" />
+    <ClInclude Include="Static.h" />
+    <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Id.cpp" />
+    <ClCompile Include="ImageUtil.cpp" />
+    <ClCompile Include="Json.cpp" />
+    <ClCompile Include="JsonBlockAllocator.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,4 @@
+syntax: glob
+obj/**
+editor/build/**
+editor/bin/**

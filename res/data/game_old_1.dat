@@ -1,0 +1,97 @@
+#define Rectangle R
+#define Line L
+#define LineStrip LS
+#define Point P
+#define Image I
+#define ImageAnimated IS
+
+World
+ Iteractive
+  Interactive Climbable
+   1,Climbable,R
+  Interactive Ground
+   2,Ground Line,L
+   3,Ground Strip,LS
+  Interactive Ceiling
+   60,Ceiling Line,L
+   61,Ceiling Strip,LS
+  Interactive Object
+   4,Tree,I,tree.png
+   5,Door,I,door.png
+   6,Chest,I,chest.png
+   7,Sword,I,sword.png
+   62,Box,I,box.png
+ Scenery
+  Scenery Dynamic
+   Grass
+    8,Grass Long 1,IS,grass_long_1a.png,grass_long_1b.png,grass_long_1c.png,grass_long_1d.png
+    9,Grass Long 2,IS,grass_long_2.png
+    10,Grass Long 3,IS,grass_long_3.png
+   Tree
+    11,Tree Deciduous 1
+    12,Tree Deciduous 2
+    13,Tree Deciduous 3
+    14,Tree Deciduous 4
+    15,Tree Coniferous 1
+    16,Tree Coniferous 2
+    17,Tree Coniferous 3
+    18,Tree Coniferous 4
+   Light
+    19,Window 1,P,window_1.png
+    20,Window 2
+    21,Window 3
+    22,Street Lamp 1
+    23,Street Lamp 2
+    24,Beacon
+   Emitter
+    62,Fire
+    63,Steam
+    64,Sparks
+    65,Snow
+    66,Rain
+  Scenery Static
+   Ground
+    25,Ground Grass 1
+    26,Ground Grass 2
+    27,Ground Grass 3
+    28,Ground Flowers 1
+    29,Ground Flowers 2
+    30,Ground Stone 1
+    31,Ground Stone 2
+   Boulder
+    32,Boulder Small 1
+    33,Boulder Medium 1
+    34,Boulder Large 1
+   Grass
+    35,Grass 1
+    36,Grass 2
+    37,Grass 3
+   Flowers
+    38,Flowers Mixed 1
+    39,Flowers Red 1
+    40,Flowers Blue 1
+    41,Flowers Purple 1
+   City
+    42,House 1
+    43,House 2
+    44,House 3
+    45,House 4
+    46,Tower 1
+    47,Tower 2
+    48,Arch 1
+    49,Arch 2
+    50,Warehouse 1
+    51,Warehouse 2
+ Creature
+  Creature Aggressive
+   52,Slime
+   53,Worm
+  Creature Passive
+   54,Rabbit
+   55,Cow
+   56,Bird
+   57,Bat
+  Creature Interactive
+   58,Greg
+ Player
+  59,Player
