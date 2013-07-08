@@ -3,12 +3,11 @@
 #include <map>
 
 #include "DataItem.h"
-#include "StringUtil.h"
 #include "DataType.h"
 #include "ShapeType.h"
 #include "JsonUtil.h"
-
-#include "Settings.h"//temp globals
+#include "FileUtil.h"
+#include "StringUtil.h"
 
 class Data
 {
@@ -88,7 +87,7 @@ private:
       {
         for(json_value* resource = resourcesJson->first_child; resource; resource = resource->next_sibling)
         {
-          resources.push_back(RESOURCE_PATH + std::string(resource->string_value));
+          resources.push_back(FileUtil::getImagePath() + std::string(resource->string_value));
         }
       }
 

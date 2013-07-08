@@ -1,6 +1,6 @@
 #include "Game.h"
 
-
+/*
 WorldPosition toW(Display* display, std::string test, ScreenPosition p)
 {
   WorldPosition wp(display->getWorldPosition(p));
@@ -32,6 +32,7 @@ void testCoordSystem(Display* display)
 
 
 }
+*/
 
 
 Game::Game(bool fullscreen)
@@ -39,7 +40,7 @@ Game::Game(bool fullscreen)
   event_queue(NULL),
   timer(NULL),
   redraw(false),
-  world(WORLD_PATH, DATA_PATH),
+  world(FileUtil::getWorldFile(), FileUtil::getDataFile()),
   minusPressed(false)
 {
 
@@ -93,7 +94,7 @@ Game::Game(bool fullscreen)
   }
 
   _display = new Display(display);
-  testCoordSystem(_display);
+  //testCoordSystem(_display);
 
   al_set_window_title(display, TITLE);
 
@@ -166,7 +167,7 @@ void Game::run()
     }
     else if(ev.type == ALLEGRO_EVENT_KEY_DOWN)
     {
-      std::cout << "got down key" << std::endl;
+      //std::cout << "got down key" << std::endl;
       if(ev.keyboard.keycode == ALLEGRO_KEY_SPACE) world.getPlayer()->jump();
       else if(ev.keyboard.keycode == ALLEGRO_KEY_LEFT) world.getPlayer()->setMovingLeft(true);
       else if(ev.keyboard.keycode == ALLEGRO_KEY_RIGHT) world.getPlayer()->setMovingRight(true);

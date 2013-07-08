@@ -49,7 +49,7 @@ public:
     if(images.count(image) > 0)
     {
       images[image].referenceCount++;
-      std::cout << "acquired " << image << " with " << images[image].referenceCount << " references " << std::endl;
+      //std::cout << "acquired " << image << " with " << images[image].referenceCount << " references " << std::endl;
       return images[image].bitmap;
     }
 

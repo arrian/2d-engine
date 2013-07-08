@@ -3,11 +3,6 @@ package util;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Arrian

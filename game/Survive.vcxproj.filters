@@ -207,6 +207,9 @@
     <ClInclude Include="Display.h">
       <Filter>Header Files\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="FileUtil.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

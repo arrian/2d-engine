@@ -28,9 +28,12 @@
 #define TITLE "Survive"
 
 //Paths
-#define RESOURCE_PATH "c:/Dev/Survive/Survive/"
-#define DATA_PATH "c:/Dev/Survive/Survive/game.dat"
-#define WORLD_PATH "c:/Dev/Survive/Survive/world_debug_10.dat"
+#define RESOURCE_PATH "/../../res/"
+#define IMAGE_FOLDER "images/"
+#define DATA_FOLDER "data/"
+#define WORLD_FOLDER "world/"
+#define DATA_FILE "game.dat"
+#define WORLD_FILE "world_debug_10.dat"
 
 
 //Libraries
