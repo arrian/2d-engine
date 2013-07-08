@@ -7,11 +7,12 @@
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
+#include "allegro5/allegro_ttf.h"
 
 #include "World.h"
 #include "Menu.h"
 #include "Display.h"
-#include "Settings.h"//temp globals
+#include "FontUtil.h"
 
 class Game
 {
@@ -26,6 +27,8 @@ private:
   ALLEGRO_DISPLAY* display;
   ALLEGRO_EVENT_QUEUE* event_queue;
   ALLEGRO_TIMER* timer;
+
+  ALLEGRO_FONT* debugFont;
 
   World world;
   Menu menu;

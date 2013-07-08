@@ -7,6 +7,8 @@
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_image.h"
 
+#include "FileUtil.h"
+
 
 struct ImageReference
 {
@@ -57,7 +59,7 @@ public:
 
     Image nImage;
     nImage.referenceCount = 1;
-    nImage.bitmap = al_load_bitmap(image.c_str());
+    nImage.bitmap = al_load_bitmap((FileUtil::getImagePath() + image).c_str());
 
     if(!nImage.bitmap) throw std::exception("failed to load the given bitmap");
 

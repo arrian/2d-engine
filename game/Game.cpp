@@ -1,47 +1,13 @@
 #include "Game.h"
 
-/*
-WorldPosition toW(Display* display, std::string test, ScreenPosition p)
-{
-  WorldPosition wp(display->getWorldPosition(p));
-  std::cout << test << ": " << wp.x << "," << wp.y << "," << wp.xCell << "," << wp.yCell << std::endl; 
-  return wp;
-}
-
-ScreenPosition toS(Display* display, std::string test, WorldPosition p)
-{
-  ScreenPosition sp(display->getScreenPosition(p));
-  std::cout << test << ": " << sp.x << "," << sp.y << std::endl; 
-  return sp;
-}
-
-void testCoordSystem(Display* display)
-{
-  toS(display, "to screen", toW(display, "to world", ScreenPosition(0,0)));
-  std::cout << "--------------" << std::endl;
-  toS(display, "to screen", toW(display, "to world", ScreenPosition(100,100)));
-  std::cout << "--------------" << std::endl;
-  toS(display, "to screen", toW(display, "to world", ScreenPosition(-100,-100)));
-  std::cout << "--------------" << std::endl;
-  toS(display, "to screen", toW(display, "to world", ScreenPosition(CELL_SIZE+1,CELL_SIZE+1)));
-  std::cout << "--------------" << std::endl;
-  toW(display, "to world", toS(display, "to screen", WorldPosition(0,0,-4,3)));
-  std::cout << "--------------" << std::endl;
-    toW(display, "to world", toS(display, "to screen", WorldPosition(CELL_SIZE,CELL_SIZE,-4,3)));
-  std::cout << "--------------" << std::endl;
-
-
-}
-*/
-
-
 Game::Game(bool fullscreen)
   : display(NULL),
   event_queue(NULL),
   timer(NULL),
   redraw(false),
   world(FileUtil::getWorldFile(), FileUtil::getDataFile()),
-  minusPressed(false)
+  minusPressed(false),
+  debugFont(NULL)
 {
 
   if(!al_init()) throw std::exception("Failed to initialise allegro.");
@@ -51,6 +17,8 @@ Game::Game(bool fullscreen)
 
   al_init_image_addon();
   al_init_primitives_addon();
+  al_init_font_addon();
+  al_init_ttf_addon();
 
 
   int width = DEFAULT_WIDTH;
@@ -94,7 +62,6 @@ Game::Game(bool fullscreen)
   }
 
   _display = new Display(display);
-  //testCoordSystem(_display);
 
   al_set_window_title(display, TITLE);
 
@@ -126,6 +93,9 @@ Game::Game(bool fullscreen)
     }
   }
 
+
+  debugFont = FontUtil::acquire(DEBUG_FONT);
+  
   //need to check results here
   al_install_keyboard();
   al_install_mouse();
@@ -141,6 +111,8 @@ Game::Game(bool fullscreen)
 
 Game::~Game(void)
 {
+  FontUtil::release(DEBUG_FONT);
+
   al_destroy_display(display);
   al_destroy_event_queue(event_queue);
   al_destroy_timer(timer);
@@ -167,7 +139,6 @@ void Game::run()
     }
     else if(ev.type == ALLEGRO_EVENT_KEY_DOWN)
     {
-      //std::cout << "got down key" << std::endl;
       if(ev.keyboard.keycode == ALLEGRO_KEY_SPACE) world.getPlayer()->jump();
       else if(ev.keyboard.keycode == ALLEGRO_KEY_LEFT) world.getPlayer()->setMovingLeft(true);
       else if(ev.keyboard.keycode == ALLEGRO_KEY_RIGHT) world.getPlayer()->setMovingRight(true);
@@ -201,11 +172,16 @@ void Game::run()
 
 void Game::draw()
 {
-  al_flip_display();
+  
   
   al_clear_to_color(al_map_rgb(DEFAULT_CLEAR_COLOUR));
   world.draw(_display);
 
+#ifdef _DEBUG
+  al_draw_text(debugFont, al_map_rgb(255,255,255), 0.0f, 0.0f, 0, VERSION);
+#endif
+
+  al_flip_display();
   
 }
 

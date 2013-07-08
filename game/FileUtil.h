@@ -33,6 +33,12 @@ public:
   {
     return getExecutablePath() + RESOURCE_PATH + WORLD_FOLDER + WORLD_FILE;
   }
+
+  static std::string getFontPath()
+  {
+    return getExecutablePath() + RESOURCE_PATH + FONT_FOLDER;
+
+  }
 };
 
 

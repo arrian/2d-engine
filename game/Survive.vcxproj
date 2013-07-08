@@ -85,6 +85,7 @@
     <ClInclude Include="Dynamic.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="FileUtil.h" />
+    <ClInclude Include="FontUtil.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="ImageUtil.h" />
@@ -124,6 +125,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FontUtil.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Id.cpp" />
     <ClCompile Include="ImageUtil.cpp" />

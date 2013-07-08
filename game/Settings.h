@@ -5,6 +5,8 @@
 
 //Constants
 #define CELL_SIZE 600 //in metres
+#define VERSION "alpha 0.1.1"
+#define DEBUG_FONT "myriad-pro.ttf"
 
 //Defaults
 #define DEFAULT_WIDTH 1024
@@ -32,6 +34,7 @@
 #define IMAGE_FOLDER "images/"
 #define DATA_FOLDER "data/"
 #define WORLD_FOLDER "world/"
+#define FONT_FOLDER "fonts/"
 #define DATA_FILE "game.dat"
 #define WORLD_FILE "world_debug_10.dat"
 

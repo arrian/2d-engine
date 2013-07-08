@@ -210,6 +210,9 @@
     <ClInclude Include="FileUtil.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="FontUtil.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -228,6 +231,9 @@
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
     <ClCompile Include="ImageUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="FontUtil.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>

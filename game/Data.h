@@ -87,7 +87,7 @@ private:
       {
         for(json_value* resource = resourcesJson->first_child; resource; resource = resource->next_sibling)
         {
-          resources.push_back(FileUtil::getImagePath() + std::string(resource->string_value));
+          resources.push_back(std::string(resource->string_value));
         }
       }
 
