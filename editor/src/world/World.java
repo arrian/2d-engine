@@ -4,7 +4,6 @@ package world;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import data.Data;
-import data.DataNode;
 import java.awt.Graphics2D;
 import java.io.BufferedWriter;
 import java.io.File;

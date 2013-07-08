@@ -98,23 +98,38 @@ public abstract class Shape {
             DataItem item = data.find(id.getAsInt());
             if(item == null) return context.deserialize(json, Shape.class);
             
+            Shape shape;
             switch(item.getType())
             {
                 case IMAGE: 
                     ShapeImage image = context.deserialize(json, ShapeImage.class);
                     if(item.getResourceCount() > 0) image.setImage(editor.getImageResourceLocation() + item.getResource(0));
-                    return image;
-                case IMAGE_ANIMATED: return context.deserialize(json, ShapeImageAnimated.class);
+                    shape = image;
+                    break;
+                case IMAGE_ANIMATED: 
+                    shape = context.deserialize(json, ShapeImageAnimated.class);
+                    break;
                 case LINE: 
                     ShapeLine line = context.deserialize(json, ShapeLine.class);
                     line.setComplete(true);
-                    return line;
-                case LINE_STRIP: return context.deserialize(json, ShapeLineStrip.class);
-                case POINT: return context.deserialize(json, ShapePoint.class);
-                case RECTANGLE: return context.deserialize(json, ShapeRectangle.class);
-                default: break;
+                    shape = line;
+                    break;
+                case LINE_STRIP: 
+                    shape = context.deserialize(json, ShapeLineStrip.class);
+                    break;
+                case POINT: 
+                    shape = context.deserialize(json, ShapePoint.class);
+                    break;
+                case RECTANGLE: 
+                    shape = context.deserialize(json, ShapeRectangle.class);
+                    break;
+                default: 
+                    shape = context.deserialize(json, Shape.class); 
+                    break;
             }
-            return context.deserialize(json, Shape.class);
+            
+            shape.setName(item.getName());
+            return shape;
         }
     }
 }
