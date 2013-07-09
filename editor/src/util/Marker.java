@@ -15,7 +15,8 @@ import javax.imageio.ImageIO;
  *
  * @author Arrian
  */
-public class Marker {
+public class Marker
+{
     
     
     private static BufferedImage image = null;

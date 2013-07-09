@@ -29,6 +29,11 @@ import world.Cell;
 import world.World;
 import data.DataItem;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
+import shape.Shape;
+import shape.ShapePoint;
+import shape.ShapeRectangle;
 import util.*;
 
 public class Editor extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener {
@@ -41,7 +46,12 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     private WorldPosition mousePosition = null;
     private DataItem selectedDataItem = null;
     private boolean debug = true;
-
+    
+    private File workingFile = null;
+    
+    private Stack<ActionItem> undoStack = new Stack<ActionItem>();
+    private Stack<ActionItem> redoStack = new Stack<ActionItem>();
+    
     public Editor()
     {
         super();
@@ -54,7 +64,7 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     /**
      * Generates a new world.
      */
-    public void clear()
+    public final void clear()
     {
         world = new World();
         world.loadCell(new CellIndex(0,0));
@@ -64,12 +74,20 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     
     public void undo()
     {
-        
+        if(undoStack.isEmpty()) return;
+        ActionItem action = undoStack.pop();
+        action.undo();
+        redoStack.add(action);
+        repaint();
     }
     
     public void redo()
     {
-        
+        if(redoStack.isEmpty()) return;
+        ActionItem action = redoStack.pop();
+        action.redo();
+        undoStack.add(action);
+        repaint();
     }
 
     /**
@@ -80,18 +98,29 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     {
         try {
             World.save(world, file);
+            workingFile = file;
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+    
+    public void save()
+    {
+        save(workingFile);
     }
     
     public void load(File file, Data data) 
     {
         try {
             world = World.load(file, this, data);
+            workingFile = file;
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    public File getWorkingFile() {
+        return workingFile;
     }
 
     @Override
@@ -198,8 +227,6 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     public void mouseWheelMoved(MouseWheelEvent e) {
         mode.mouseWheelMoved(e);
         
-        
-        
         repaint();
     }
 
@@ -236,11 +263,6 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     {
         return worldScale;
     }
-
-    public World getWorld()
-	{
-		return world;
-	}
 
     public WorldPosition getWorldPosition(ScreenPosition position)
     {
@@ -297,9 +319,33 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         return new ScreenPosition((float) getWidth() / 2f, (float) getHeight() / 2f);
     }
     
+    public ArrayList<Shape> query(ShapePoint point)
+    {
+        return world.query(point);
+    }
+    
+    public ArrayList<Shape> query(ShapeRectangle rectangle)
+    {
+        return world.query(rectangle);
+    }
+    
     public void addMarker(String name)
     {
-        world.addMarker(new Marker(name, worldPosition));
+        redoStack.clear();
+        MarkerAction action = new MarkerAction(world, ActionItem.ActionType.ADD, new Marker(name, worldPosition));
+        action.initialise();
+        undoStack.push(action);
+        if(undoStack.size() > Settings.MAX_UNDOS) undoStack.remove(0);
+        repaint();
+    }
+    
+    public void addShape(Shape shape)
+    {
+        redoStack.clear();
+        ShapeAction action = new ShapeAction(world, ActionItem.ActionType.ADD, shape);
+        action.initialise();
+        undoStack.push(action);
+        if(undoStack.size() > Settings.MAX_UNDOS) undoStack.remove(0);
         repaint();
     }
     
@@ -308,5 +354,46 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         worldScale += factor;
         if(worldScale <= 0) worldScale = 0.1;
         repaint();
+    }
+    
+    
+    private class MarkerAction extends ActionItem<Marker>
+    {
+        World world;
+
+        public MarkerAction(World world, ActionItem.ActionType initialAction, Marker object) {
+            super(initialAction, object);
+            this.world = world;
+        }
+
+        @Override
+        public void add() {
+            world.addMarker(object);
+        }
+
+        @Override
+        public void remove() {
+            world.removeMarker(object);
+        }
+    }
+    
+    private class ShapeAction extends ActionItem<Shape>
+    {
+        World world;
+        
+        public ShapeAction(World world, ActionItem.ActionType initialAction, Shape object) {
+            super(initialAction, object);
+            this.world = world;
+        }
+
+        @Override
+        public void add() {
+            world.addShape(object);
+        }
+
+        @Override
+        public void remove() {
+            world.removeShape(object);
+        }
     }
 }

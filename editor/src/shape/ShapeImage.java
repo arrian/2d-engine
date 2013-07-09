@@ -78,7 +78,7 @@ public class ShapeImage extends Shape {
         double width = getWidth();
         double height = getHeight();
         
-        return new ShapeRectangle(id, new WorldPosition(position.getCellIndex(),position.getX() - width / 2, position.getY()), width, height);
+        return new ShapeRectangle(id, new WorldPosition(position.getCellIndex(),position.getX() - (width / 2f), position.getY() + height), width, height);
     }
     
     public double getWidth()

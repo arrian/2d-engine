@@ -85,7 +85,71 @@ public class Application extends javax.swing.JFrame {
             itemTree.expandRow(i);
         }
     }
+    
+    private void open()
+    {
+        JFileChooser openFile = new JFileChooser();
+        int returnValue = openFile.showOpenDialog(null);
+        if(returnValue == JFileChooser.APPROVE_OPTION)
+        {
+            getEditor().load(openFile.getSelectedFile(), (Data) itemTree.getModel());
+        }
+    }
+    
+    private void save()
+    {
+        if(getEditor().getWorkingFile() == null) {
+            saveAs();
+        } else {
+            getEditor().save();
+        }
+    }
+    
+    private void saveAs()
+    {
+        JFileChooser saveFile = new JFileChooser();
+        int returnValue = saveFile.showSaveDialog(null);
+        if(returnValue == JFileChooser.APPROVE_OPTION) {
+            File file = saveFile.getSelectedFile();
+            getEditor().save(file);//, (Data) itemTree.getModel());
+        }
+    }
+    
+    private void newWorld()
+    {
+        int option = JOptionPane.showConfirmDialog(this, "Do you want to save changes to the current world?");
+        
+        if(option == JOptionPane.YES_OPTION) save();
+        if(option != JOptionPane.CANCEL_OPTION) getEditor().clear();
+    }
+    
+    private void setEditorMode(Class c) {
 
+        if(c.equals(ModeSelect.class)) getEditor().setMode(new ModeSelect(getEditor()));
+        else if(c.equals(ModeAdd.class)) getEditor().setMode(new ModeAdd(getEditor(), getEditor().getSelectedDataItem()));
+        else if(c.equals(ModeMove.class)) getEditor().setMode(new ModeMove(getEditor()));        
+        else if(c.equals(ModeRotate.class)) getEditor().setMode(new ModeRotate(getEditor()));
+        else if(c.equals(ModeHand.class)) getEditor().setMode(new ModeHand(getEditor()));
+    
+    }
+    
+    private void run()
+    {
+        try 
+        {
+            String data = "game.dat";
+            String world = "world.dat";
+            String cell = "0,0";
+            String position = "300,300";
+            ProcessBuilder pb = new ProcessBuilder(Settings.DEFAULT_EXECUTABLE_LOCATION + Settings.DEFAULT_EXECUTABLE, data, world, cell, position);
+            Process p = pb.start();
+        } 
+        catch (IOException ex) 
+        {
+            System.err.println(ex);
+        }
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,8 +167,8 @@ public class Application extends javax.swing.JFrame {
         editorPanel = new Editor();
         tools = new javax.swing.JToolBar();
         newWorld = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        save = new javax.swing.JButton();
+        openWorld = new javax.swing.JButton();
+        saveWorld = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         undo = new javax.swing.JButton();
         redo = new javax.swing.JButton();
@@ -125,10 +189,10 @@ public class Application extends javax.swing.JFrame {
         jSeparator9 = new javax.swing.JToolBar.Separator();
         zoomOut = new javax.swing.JButton();
         zoomIn = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        markerSelect = new javax.swing.JButton();
         markerAdd = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JToolBar.Separator();
-        jButton10 = new javax.swing.JButton();
+        worldSettings = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
@@ -152,11 +216,13 @@ public class Application extends javax.swing.JFrame {
         copyMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        modeSelectMenuItem = new javax.swing.JMenuItem();
-        modeAddMenuItem = new javax.swing.JMenuItem();
-        modeMoveMenuItem = new javax.swing.JMenuItem();
-        modeRotateMenuItem = new javax.swing.JMenuItem();
-        modeHandMenuItem = new javax.swing.JMenuItem();
+        selectMenuItem = new javax.swing.JRadioButtonMenuItem();
+        addMenuItem = new javax.swing.JRadioButtonMenuItem();
+        moveMenuItem = new javax.swing.JRadioButtonMenuItem();
+        rotateMenuItem = new javax.swing.JRadioButtonMenuItem();
+        handMenuItem = new javax.swing.JRadioButtonMenuItem();
+        toolsMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editor");
@@ -198,6 +264,7 @@ public class Application extends javax.swing.JFrame {
         tools.setRollover(true);
 
         newWorld.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/box--plus.png"))); // NOI18N
+        newWorld.setToolTipText("New world");
         newWorld.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         newWorld.setFocusable(false);
         newWorld.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -209,26 +276,34 @@ public class Application extends javax.swing.JFrame {
         });
         tools.add(newWorld);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder-horizontal-open.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tools.add(jButton2);
-
-        save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/disk-black.png"))); // NOI18N
-        save.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        save.setFocusable(false);
-        save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        save.addActionListener(new java.awt.event.ActionListener() {
+        openWorld.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder-horizontal-open.png"))); // NOI18N
+        openWorld.setToolTipText("Open world");
+        openWorld.setFocusable(false);
+        openWorld.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        openWorld.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        openWorld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveActionPerformed(evt);
+                openWorldActionPerformed(evt);
             }
         });
-        tools.add(save);
+        tools.add(openWorld);
+
+        saveWorld.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/disk-black.png"))); // NOI18N
+        saveWorld.setToolTipText("Save world");
+        saveWorld.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        saveWorld.setFocusable(false);
+        saveWorld.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        saveWorld.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        saveWorld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveWorldActionPerformed(evt);
+            }
+        });
+        tools.add(saveWorld);
         tools.add(jSeparator6);
 
         undo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrow-curve-180-left.png"))); // NOI18N
+        undo.setToolTipText("Undo");
         undo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         undo.setFocusable(false);
         undo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -241,7 +316,7 @@ public class Application extends javax.swing.JFrame {
         tools.add(undo);
 
         redo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrow-curve.png"))); // NOI18N
-        redo.setToolTipText("");
+        redo.setToolTipText("Redo");
         redo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         redo.setFocusable(false);
         redo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -257,6 +332,7 @@ public class Application extends javax.swing.JFrame {
         modeGroup.add(modeSelect);
         modeSelect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cursor.png"))); // NOI18N
         modeSelect.setSelected(true);
+        modeSelect.setToolTipText("Cursor");
         modeSelect.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         modeSelect.setFocusable(false);
         modeSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -270,6 +346,7 @@ public class Application extends javax.swing.JFrame {
 
         modeGroup.add(modeAdd);
         modeAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
+        modeAdd.setToolTipText("Add");
         modeAdd.setFocusable(false);
         modeAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         modeAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -282,6 +359,7 @@ public class Application extends javax.swing.JFrame {
 
         modeGroup.add(modeMove);
         modeMove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrow-move.png"))); // NOI18N
+        modeMove.setToolTipText("Move");
         modeMove.setFocusable(false);
         modeMove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         modeMove.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -294,6 +372,7 @@ public class Application extends javax.swing.JFrame {
 
         modeGroup.add(modeRotate);
         modeRotate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/layer-rotate.png"))); // NOI18N
+        modeRotate.setToolTipText("Rotate");
         modeRotate.setFocusable(false);
         modeRotate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         modeRotate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -306,6 +385,7 @@ public class Application extends javax.swing.JFrame {
 
         modeGroup.add(modeHand);
         modeHand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hand.png"))); // NOI18N
+        modeHand.setToolTipText("Hand tool");
         modeHand.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         modeHand.setFocusable(false);
         modeHand.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -319,6 +399,7 @@ public class Application extends javax.swing.JFrame {
         tools.add(jSeparator5);
 
         run.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/control.png"))); // NOI18N
+        run.setToolTipText("Test");
         run.setFocusable(false);
         run.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         run.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -331,6 +412,7 @@ public class Application extends javax.swing.JFrame {
 
         showDebug.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/grid.png"))); // NOI18N
         showDebug.setSelected(true);
+        showDebug.setToolTipText("Show debug");
         showDebug.setFocusable(false);
         showDebug.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         showDebug.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -343,6 +425,7 @@ public class Application extends javax.swing.JFrame {
 
         showData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder-tree.png"))); // NOI18N
         showData.setSelected(true);
+        showData.setToolTipText("Show data");
         showData.setFocusable(false);
         showData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         showData.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -355,17 +438,20 @@ public class Application extends javax.swing.JFrame {
         tools.add(jSeparator2);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "Layer 0", "Layer 1", "Layer 2", "Layer 3", "Layer 4", "Layer 5", "Layer 6", "Layer 7", "Layer 8", "Layer 9" }));
+        jComboBox1.setToolTipText("Layer");
         jComboBox1.setLightWeightPopupEnabled(false);
         jComboBox1.setMaximumSize(new java.awt.Dimension(61, 20));
         tools.add(jComboBox1);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrow-transition-270.png"))); // NOI18N
+        jButton3.setToolTipText("Move down a layer");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tools.add(jButton3);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrow-transition-090.png"))); // NOI18N
+        jButton4.setToolTipText("Move up a layer");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -373,6 +459,7 @@ public class Application extends javax.swing.JFrame {
         tools.add(jSeparator9);
 
         zoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/magnifier-zoom-in.png"))); // NOI18N
+        zoomOut.setToolTipText("Zoom in");
         zoomOut.setFocusable(false);
         zoomOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoomOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -384,7 +471,7 @@ public class Application extends javax.swing.JFrame {
         tools.add(zoomOut);
 
         zoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/magnifier-zoom-out.png"))); // NOI18N
-        zoomIn.setToolTipText("");
+        zoomIn.setToolTipText("Zoom out");
         zoomIn.setFocusable(false);
         zoomIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoomIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -395,18 +482,20 @@ public class Application extends javax.swing.JFrame {
         });
         tools.add(zoomIn);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/marker.png"))); // NOI18N
-        jButton9.setFocusable(false);
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        markerSelect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/marker.png"))); // NOI18N
+        markerSelect.setToolTipText("Select marker");
+        markerSelect.setFocusable(false);
+        markerSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        markerSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        markerSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                markerSelectActionPerformed(evt);
             }
         });
-        tools.add(jButton9);
+        tools.add(markerSelect);
 
         markerAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/marker--plus.png"))); // NOI18N
+        markerAdd.setToolTipText("Add marker");
         markerAdd.setFocusable(false);
         markerAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         markerAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -418,11 +507,12 @@ public class Application extends javax.swing.JFrame {
         tools.add(markerAdd);
         tools.add(jSeparator10);
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/map.png"))); // NOI18N
-        jButton10.setFocusable(false);
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tools.add(jButton10);
+        worldSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/map.png"))); // NOI18N
+        worldSettings.setToolTipText("World settings");
+        worldSettings.setFocusable(false);
+        worldSettings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        worldSettings.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tools.add(worldSettings);
 
         fileMenu.setText("File");
 
@@ -559,27 +649,72 @@ public class Application extends javax.swing.JFrame {
         editMenu.add(pasteMenuItem);
         editMenu.add(jSeparator4);
 
-        modeSelectMenuItem.setText("Select");
-        modeMenuGroup.add(modeSelectMenuItem);
-        editMenu.add(modeSelectMenuItem);
+        selectMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, 0));
+        modeMenuGroup.add(selectMenuItem);
+        selectMenuItem.setSelected(true);
+        selectMenuItem.setText("Select");
+        selectMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(selectMenuItem);
 
-        modeAddMenuItem.setText("Add");
-        modeMenuGroup.add(modeAddMenuItem);
-        editMenu.add(modeAddMenuItem);
+        addMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, 0));
+        modeMenuGroup.add(addMenuItem);
+        addMenuItem.setText("Add");
+        addMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(addMenuItem);
 
-        modeMoveMenuItem.setText("Move");
-        modeMenuGroup.add(modeMoveMenuItem);
-        editMenu.add(modeMoveMenuItem);
+        moveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, 0));
+        modeMenuGroup.add(moveMenuItem);
+        moveMenuItem.setText("Move");
+        moveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(moveMenuItem);
 
-        modeRotateMenuItem.setText("Rotate");
-        modeMenuGroup.add(modeRotateMenuItem);
-        editMenu.add(modeRotateMenuItem);
+        rotateMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, 0));
+        modeMenuGroup.add(rotateMenuItem);
+        rotateMenuItem.setText("Rotate");
+        rotateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotateMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(rotateMenuItem);
 
-        modeHandMenuItem.setText("Hand");
-        modeMenuGroup.add(modeHandMenuItem);
-        editMenu.add(modeHandMenuItem);
+        handMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, 0));
+        modeMenuGroup.add(handMenuItem);
+        handMenuItem.setText("Hand tool");
+        handMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                handMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(handMenuItem);
 
         menu.add(editMenu);
+
+        toolsMenu.setText("Tools");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/control.png"))); // NOI18N
+        jMenuItem2.setText("Run");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        toolsMenu.add(jMenuItem2);
+
+        menu.add(toolsMenu);
 
         setJMenuBar(menu);
 
@@ -608,31 +743,19 @@ public class Application extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        JFileChooser openFile = new JFileChooser();
-        int returnValue = openFile.showOpenDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION)
-        {
-            getEditor().load(openFile.getSelectedFile(), (Data) itemTree.getModel());
-        }
-        
-        
+        open();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveWorldMenuItemActionPerformed
-
+        save();
     }//GEN-LAST:event_saveWorldMenuItemActionPerformed
 
     private void saveWorldAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveWorldAsMenuItemActionPerformed
-        JFileChooser saveFile = new JFileChooser();
-        int returnValue = saveFile.showSaveDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = saveFile.getSelectedFile();
-            getEditor().save(file);//, (Data) itemTree.getModel());
-        }
+        saveAs();
     }//GEN-LAST:event_saveWorldAsMenuItemActionPerformed
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
-        getEditor().clear();
+        newWorld();
     }//GEN-LAST:event_newMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -664,12 +787,12 @@ public class Application extends javax.swing.JFrame {
     }//GEN-LAST:event_pasteMenuItemActionPerformed
 
     private void newWorldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newWorldActionPerformed
-        getEditor().clear();
+        newWorld();
     }//GEN-LAST:event_newWorldActionPerformed
 
-    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveActionPerformed
+    private void saveWorldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveWorldActionPerformed
+        save();
+    }//GEN-LAST:event_saveWorldActionPerformed
 
     private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
         getEditor().undo();
@@ -680,23 +803,28 @@ public class Application extends javax.swing.JFrame {
     }//GEN-LAST:event_redoActionPerformed
 
     private void modeSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeSelectActionPerformed
-        getEditor().setMode(new ModeSelect((Editor) editorPanel));
+        setEditorMode(ModeSelect.class);
+        modeMenuGroup.setSelected(selectMenuItem.getModel(), true);
     }//GEN-LAST:event_modeSelectActionPerformed
 
     private void modeAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeAddActionPerformed
-        getEditor().setMode(new ModeAdd(getEditor(), getEditor().getSelectedDataItem()));
+        setEditorMode(ModeAdd.class);
+        modeMenuGroup.setSelected(addMenuItem.getModel(), true);
     }//GEN-LAST:event_modeAddActionPerformed
 
     private void modeMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeMoveActionPerformed
-        getEditor().setMode(new ModeMove(getEditor()));
+        setEditorMode(ModeMove.class);
+        modeMenuGroup.setSelected(moveMenuItem.getModel(), true);
     }//GEN-LAST:event_modeMoveActionPerformed
 
     private void modeRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeRotateActionPerformed
-        getEditor().setMode(new ModeRotate(getEditor()));
+        setEditorMode(ModeRotate.class);
+        modeMenuGroup.setSelected(rotateMenuItem.getModel(), true);
     }//GEN-LAST:event_modeRotateActionPerformed
 
     private void modeHandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeHandActionPerformed
-        getEditor().setMode(new ModeHand(getEditor()));
+        setEditorMode(ModeHand.class);
+        modeMenuGroup.setSelected(handMenuItem.getModel(), true);
     }//GEN-LAST:event_modeHandActionPerformed
 
     private void showDebugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDebugActionPerformed
@@ -728,25 +856,13 @@ public class Application extends javax.swing.JFrame {
         
     }//GEN-LAST:event_markerAddActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void markerSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markerSelectActionPerformed
         MarkerDialog dialog = new MarkerDialog(this, true);
         dialog.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_markerSelectActionPerformed
 
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
-        try 
-        {
-            String data = "game.dat";
-            String world = "world.dat";
-            String cell = "0,0";
-            String position = "300,300";
-            ProcessBuilder pb = new ProcessBuilder(Settings.DEFAULT_EXECUTABLE_LOCATION + Settings.DEFAULT_EXECUTABLE, data, world, cell, position);
-            Process p = pb.start();
-        } 
-        catch (IOException ex) 
-        {
-            System.err.println(ex);
-        }
+        run();
     }//GEN-LAST:event_runActionPerformed
 
     private void showDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDataActionPerformed
@@ -762,6 +878,39 @@ public class Application extends javax.swing.JFrame {
     private void zoomInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoomInActionPerformed
         getEditor().zoom(-1);
     }//GEN-LAST:event_zoomInActionPerformed
+
+    private void openWorldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWorldActionPerformed
+        open();
+    }//GEN-LAST:event_openWorldActionPerformed
+
+    private void selectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectMenuItemActionPerformed
+        setEditorMode(ModeSelect.class);
+        modeGroup.setSelected(modeSelect.getModel(), true);
+    }//GEN-LAST:event_selectMenuItemActionPerformed
+
+    private void addMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMenuItemActionPerformed
+        setEditorMode(ModeAdd.class);
+        modeGroup.setSelected(modeAdd.getModel(), true);
+    }//GEN-LAST:event_addMenuItemActionPerformed
+
+    private void moveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveMenuItemActionPerformed
+        setEditorMode(ModeMove.class);
+        modeGroup.setSelected(modeMove.getModel(), true);
+    }//GEN-LAST:event_moveMenuItemActionPerformed
+
+    private void rotateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotateMenuItemActionPerformed
+        setEditorMode(ModeRotate.class);
+        modeGroup.setSelected(modeRotate.getModel(), true);
+    }//GEN-LAST:event_rotateMenuItemActionPerformed
+
+    private void handMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handMenuItemActionPerformed
+        setEditorMode(ModeHand.class);
+        modeGroup.setSelected(modeHand.getModel(), true);
+    }//GEN-LAST:event_handMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        run();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -789,6 +938,7 @@ public class Application extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButtonMenuItem addMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JMenuItem deleteMenuItem;
@@ -797,15 +947,14 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JPanel editorPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JRadioButtonMenuItem handMenuItem;
     private javax.swing.JTree itemTree;
     private javax.swing.JScrollPane itemTreePane;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -819,36 +968,38 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JButton markerAdd;
+    private javax.swing.JButton markerSelect;
     private javax.swing.JMenuBar menu;
     private javax.swing.JToggleButton modeAdd;
-    private javax.swing.JMenuItem modeAddMenuItem;
     private javax.swing.ButtonGroup modeGroup;
     private javax.swing.JToggleButton modeHand;
-    private javax.swing.JMenuItem modeHandMenuItem;
     private javax.swing.ButtonGroup modeMenuGroup;
     private javax.swing.JToggleButton modeMove;
-    private javax.swing.JMenuItem modeMoveMenuItem;
     private javax.swing.JToggleButton modeRotate;
-    private javax.swing.JMenuItem modeRotateMenuItem;
     private javax.swing.JToggleButton modeSelect;
-    private javax.swing.JMenuItem modeSelectMenuItem;
+    private javax.swing.JRadioButtonMenuItem moveMenuItem;
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JButton newWorld;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JButton openWorld;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JButton redo;
     private javax.swing.JMenuItem redoMenuItem;
+    private javax.swing.JRadioButtonMenuItem rotateMenuItem;
     private javax.swing.JButton run;
-    private javax.swing.JButton save;
     private javax.swing.JMenuItem saveDataAsMenuItem;
     private javax.swing.JMenuItem saveDataMenuItem;
+    private javax.swing.JButton saveWorld;
     private javax.swing.JMenuItem saveWorldAsMenuItem;
     private javax.swing.JMenuItem saveWorldMenuItem;
+    private javax.swing.JRadioButtonMenuItem selectMenuItem;
     private javax.swing.JToggleButton showData;
     private javax.swing.JToggleButton showDebug;
     private javax.swing.JToolBar tools;
+    private javax.swing.JMenu toolsMenu;
     private javax.swing.JButton undo;
     private javax.swing.JMenuItem undoMenuItem;
+    private javax.swing.JButton worldSettings;
     private javax.swing.JButton zoomIn;
     private javax.swing.JButton zoomOut;
     // End of variables declaration//GEN-END:variables

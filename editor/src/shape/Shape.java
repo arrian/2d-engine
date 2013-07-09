@@ -14,6 +14,7 @@ import util.ScreenPosition;
 import util.WorldPosition;
 import editor.Editor;
 import java.util.ArrayList;
+import util.ActionItem;
 
 
 /**
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public abstract class Shape {
     
     protected int id;
+    @SerializedName("l") protected int layer;
     @SerializedName("p") protected WorldPosition position;
     @SerializedName("r") protected double rotation;
     protected transient ArrayList<String> resources = new ArrayList<String>();

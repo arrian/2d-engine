@@ -38,12 +38,12 @@ public class Cell {
         return shapes;
     }
 
-    public void addPlaceable(Shape placeable) {
-        shapes.add(placeable);
+    public void addShape(Shape shape) {
+        shapes.add(shape);
     }
 
-    public void removePlaceable(Shape placeable) {
-        shapes.remove(placeable);
+    public void removeShape(Shape shape) {
+        shapes.remove(shape);
     }
     
     public ArrayList<Shape> query(ShapePoint point)
@@ -72,11 +72,11 @@ public class Cell {
 
         //draw id at bottom left of cell
         sPos = editor.getScreenPosition(new WorldPosition(index, 0, 0));
-        g2d.drawString("Cell (" + index.getX() + ", " + index.getY() + ")", (float) sPos.getX(), (float) sPos.getY());
+        g2d.drawString("Cell (" + index.getX() + ", " + index.getY() + ", 0, 0)", (float) sPos.getX(), (float) sPos.getY());
 
         //draw id at centre of cell
         sPos = editor.getScreenPosition(new WorldPosition(index, CELL_SIZE / 2, CELL_SIZE / 2));
-        g2d.drawString("Cell (" + index.getX() + ", " + index.getY() + ")", (float) sPos.getX(), (float) sPos.getY());
+        g2d.drawString("Cell (" + index.getX() + ", " + index.getY() + ", " + CELL_SIZE / 2 + ", " + CELL_SIZE / 2 +")", (float) sPos.getX(), (float) sPos.getY());
 
         WorldPosition topLeftCorner = editor.getWorldPosition(new ScreenPosition(0,0));
         WorldPosition bottomRightCorner = editor.getWorldPosition(new ScreenPosition(editor.getWidth(),editor.getHeight()));

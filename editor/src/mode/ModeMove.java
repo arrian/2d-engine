@@ -1,6 +1,7 @@
 package mode;
 
 import editor.Editor;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class ModeMove extends Mode
         }
         else
         {
-            ArrayList<Shape> selectionStack = editor.getWorld().query(new ShapePoint(-1, startWorld));
+            ArrayList<Shape> selectionStack = editor.query(new ShapePoint(-1, startWorld));
             if(selectionStack.isEmpty()) previous = null;
             else 
             {
@@ -72,6 +73,7 @@ public class ModeMove extends Mode
     public void mouseReleased(MouseEvent e) 
     {   
         previous = null;
+        selection.clear();
     }
 
     @Override
@@ -94,6 +96,11 @@ public class ModeMove extends Mode
     @Override
     public void draw(Graphics2D g2d) {
         if(parent != null) parent.draw(g2d);
+        else if(!selection.isEmpty()) 
+        {
+            g2d.setColor(Color.pink);
+            for(Shape shape : selection) shape.drawDebug(editor, g2d);
+        }
     }
 
     

@@ -16,8 +16,10 @@ import util.CellIndex;
 import editor.Editor;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Stack;
 import shape.ShapePoint;
 import shape.ShapeRectangle;
+import util.ActionItem;
 import util.Marker;
 import util.WorldPosition;
 
@@ -34,6 +36,7 @@ public class World {
     private String name = "Test World";
     private HashMap<String, Cell> cells = new HashMap<String, Cell>();
     private ArrayList<Marker> markers = new ArrayList<Marker>();
+
 
     public World() 
     {
@@ -61,16 +64,7 @@ public class World {
         }
     }
 
-    public void addShape(Shape shape)
-    {
-    	Cell cell = getCell(shape.getPosition().getCellIndex());
-    	if(cell == null)
-    	{
-    		System.err.println("Could not add shape to cell.");
-    		return;
-    	}
-    	cell.addPlaceable(shape);
-    }
+
 
     public static void save(World world, File file) throws IOException
     {
@@ -120,9 +114,25 @@ public class World {
         
         return cell.query(point);
     }
+    
+    public ArrayList<Marker> getMarkers() {
+        return markers;
+    }
+
 
     public String getName() {
         return name;
+    }
+    
+    public void addShape(Shape shape)
+    {
+    	Cell cell = getCell(shape.getPosition().getCellIndex());
+    	if(cell == null)
+    	{
+            System.err.println("Could not add shape to cell.");
+            return;
+    	}
+    	cell.addShape(shape);
     }
     
     public void addMarker(Marker marker)
@@ -130,8 +140,21 @@ public class World {
         markers.add(marker);
     }
 
-    public ArrayList<Marker> getMarkers() {
-        return markers;
+    public void removeMarker(Marker marker) {
+        markers.remove(marker);
+    }
+
+    public void removeShape(Shape shape) 
+    {
+        Cell cell = getCell(shape.getPosition().getCellIndex());
+    	if(cell == null)
+    	{
+            System.err.println("Could not remove shape from cell.");
+            return;
+    	}
+    	cell.removeShape(shape);
     }
     
+    
+
 }

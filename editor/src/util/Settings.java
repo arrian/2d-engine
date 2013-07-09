@@ -29,6 +29,8 @@ public class Settings{
     public static final int DEBUG_GRID_SIZE_METRES = 10;
     public static final int DEBUG_GRID_CROSSHAIR_SIZE = 3;
     
+    public static final int MAX_UNDOS = 2000;
+    
     static
     {
         for(String path : DEFAULT_RESOURCE_LOCATIONS)

@@ -14,6 +14,7 @@ import util.ScreenPosition;
 import util.WorldPosition;
 import data.DataItem;
 import editor.Editor;
+import java.awt.event.KeyEvent;
 import shape.*;
 
 public class ModeAdd extends Mode
@@ -27,7 +28,7 @@ public class ModeAdd extends Mode
 	{
 		super(editor);
 		this.item = item;
-	}
+	}     
 
 	@Override
 	public void mouseMoved(MouseEvent e)
@@ -67,24 +68,27 @@ public class ModeAdd extends Mode
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SrcOver.getRule(), 0.5f));
             ghost.draw(editor, g2d);
             g2d.setComposite(oldComp);
-	}
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            super.mousePressed(e);
+            if(item == null) return;
+            if(ghost == null) createGhost();
+        }
 
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
             if(item == null) return;
-		if(e.getPoint() == null) return;
-		position = new ScreenPosition(e.getPoint());
-		if(ghost != null)
-		{
-			updateGhost();
-			addGhost();
-		}
-		else
-		{
-			createGhost();
-		}
-		super.mouseReleased(e);
+            
+            position = new ScreenPosition(e.getPoint());
+            if(ghost != null)
+            {
+                    updateGhost();
+                    addGhost();
+            }
+            super.mouseReleased(e);
 	}
 
 	private void createGhost()
@@ -108,7 +112,11 @@ public class ModeAdd extends Mode
             if(item == null) return;
 		if(ghost == null) return;
 
-		if(ghost instanceof ShapeLine) ((ShapeLine) ghost).setEnd(editor.getWorldPosition(position));
+		if(ghost instanceof ShapeLine) 
+                {
+                    ((ShapeLine) ghost).setEnd(editor.getWorldPosition(position));
+                    
+                }
 		else if(ghost instanceof ShapeRectangle) ((ShapeRectangle) ghost).setEnd(editor.getWorldPosition(position));
 		else ghost.setPosition(editor.getWorldPosition(position));
 	}
@@ -119,21 +127,19 @@ public class ModeAdd extends Mode
 		if(ghost instanceof ShapeLine)
 		{
 			if(!((ShapeLine)ghost).isComplete()) ((ShapeLine) ghost).setEnd(editor.getWorldPosition(position));
-			editor.getWorld().addShape(ghost);
+			editor.addShape(ghost);
 			ghost = null;
 		}
 		else if(ghost instanceof ShapeRectangle)
 		{
 			if(!((ShapeRectangle)ghost).isComplete()) ((ShapeRectangle) ghost).setEnd(editor.getWorldPosition(position));
-			editor.getWorld().addShape(ghost);
+			editor.addShape(ghost);
 			ghost = null;
 		}
-		else if(ghost instanceof ShapeImage || ghost instanceof ShapePoint)
+		else if(ghost instanceof ShapeImage || ghost instanceof ShapePoint || ghost instanceof ShapeImageAnimated)
 		{
-			editor.getWorld().addShape(ghost);
+			editor.addShape(ghost);
 			createGhost();
 		}
-                
-                
 	}
 }

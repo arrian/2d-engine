@@ -21,6 +21,7 @@ public class ShapeRectangle extends Shape {
     @SerializedName("h") private double height;
 
     private transient boolean complete = false;
+    private transient WorldPosition startPosition = null;
 
     public ShapeRectangle(int id, WorldPosition position, double width, double height) {
         super(id, position);
@@ -31,6 +32,7 @@ public class ShapeRectangle extends Shape {
 
     public ShapeRectangle(int id, WorldPosition start, WorldPosition end) {
     	super(id, start);
+        startPosition = start;
     	setEnd(end);
     }
 
@@ -48,9 +50,9 @@ public class ShapeRectangle extends Shape {
     public void setEnd(WorldPosition end)
     {
     	if(end == null) return;
-    	WorldPosition nPos = WorldPosition.getTopLeft(position, end);
-        width = WorldPosition.getXDistance(position, end);
-        height = WorldPosition.getYDistance(position, end);
+    	WorldPosition nPos = WorldPosition.getTopLeft(startPosition, end);
+        width = WorldPosition.getXDistance(startPosition, end);
+        height = WorldPosition.getYDistance(startPosition, end);
         position = nPos;
     	complete = true;
     }

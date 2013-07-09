@@ -34,7 +34,7 @@ public class ModeSelect extends Mode
     public void mouseReleased(MouseEvent e) {
         if(start != null && e.getPoint().getX() == start.getX() && e.getPoint().getY() == start.getY())//point click
         {
-            selectionStack = editor.getWorld().query(new ShapePoint(-1, editor.getWorldPosition(new ScreenPosition(e.getPoint()))));
+            selectionStack = editor.query(new ShapePoint(-1, editor.getWorldPosition(new ScreenPosition(e.getPoint()))));
             if(!e.isShiftDown()) selection.clear();
             if(selectionStack.size() > 0) selection.add(selectionStack.get(0));
             
@@ -43,7 +43,7 @@ public class ModeSelect extends Mode
         else if(selectionBox != null)//box select
         {
             selectionBox.setEnd(editor.getWorldPosition(new ScreenPosition(e.getPoint())));
-            selectionStack = editor.getWorld().query(selectionBox);
+            selectionStack = editor.query(selectionBox);
             if(!e.isShiftDown()) selection.clear();
             selection.addAll(selectionStack);
             
