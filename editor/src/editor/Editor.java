@@ -203,6 +203,7 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("key pressed");
     	mode.keyPressed(e);
         repaint();
     }
@@ -294,19 +295,16 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     }
     
     public void paste() {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public void copy() {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public void duplicate() {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public void delete() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        
     }
 
     public void setShowDebug(boolean selected) {
@@ -331,22 +329,26 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     
     public void addMarker(String name)
     {
-        redoStack.clear();
-        MarkerAction action = new MarkerAction(world, ActionItem.ActionType.ADD, new Marker(name, worldPosition));
-        action.initialise();
-        undoStack.push(action);
-        if(undoStack.size() > Settings.MAX_UNDOS) undoStack.remove(0);
-        repaint();
+        execute(new MarkerAction(world, ActionItem.ActionType.ADD, new Marker(name, worldPosition)));
     }
     
     public void addShape(Shape shape)
     {
+        execute(new ShapeAction(world, ActionItem.ActionType.ADD, shape));
+    }
+    
+    public void removeShapes(ArrayList<Shape> shapes)
+    {
+        execute(new ShapeArrayAction(world, ActionItem.ActionType.ADD, shapes));
+    }
+    
+    public void execute(ActionItem action)
+    {
         redoStack.clear();
-        ShapeAction action = new ShapeAction(world, ActionItem.ActionType.ADD, shape);
         action.initialise();
         undoStack.push(action);
         if(undoStack.size() > Settings.MAX_UNDOS) undoStack.remove(0);
-        repaint();
+        repaint();        
     }
     
     public void zoom(double factor)
@@ -355,7 +357,6 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         if(worldScale <= 0) worldScale = 0.1;
         repaint();
     }
-    
     
     private class MarkerAction extends ActionItem<Marker>
     {
@@ -394,6 +395,26 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         @Override
         public void remove() {
             world.removeShape(object);
+        }
+    }
+    
+    private class ShapeArrayAction extends ActionItem<ArrayList<Shape>>
+    {
+        World world;
+        
+        public ShapeArrayAction(World world, ActionItem.ActionType initialAction, ArrayList<Shape> object) {
+            super(initialAction, object);
+            this.world = world;
+        }
+
+        @Override
+        public void add() {
+            for(Shape shape : object) world.addShape(shape);
+        }
+
+        @Override
+        public void remove() {
+            for(Shape shape : object) world.removeShape(shape);
         }
     }
 }

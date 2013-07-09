@@ -80,4 +80,18 @@ public class WorldPosition extends Position
     	return Math.abs(p2.getY() - p1.getY());
     }
 
+    
+    public static double getAngle(WorldPosition centre, WorldPosition point1, WorldPosition point2)
+    {
+        double dx21 = point1.getX() - centre.getX();
+        double dx31 = point2.getX() - centre.getX();
+        double dy21 = point1.getY() - centre.getY();
+        double dy31 = point2.getY() - centre.getY();
+        double m12 = Math.sqrt( dx21*dx21 + dy21*dy21 );
+        double m13 = Math.sqrt( dx31*dx31 + dy31*dy31 );
+        double theta = Math.acos( (dx21*dx31 + dy21*dy31) / (m12 * m13) );
+        
+        return theta;
+    }
+    
 }

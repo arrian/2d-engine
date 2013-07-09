@@ -78,6 +78,14 @@ public abstract class Shape {
     public void setName(String name) {
         this.name = name;
     }
+
+    public double getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
+    }
     
     public static class ShapeAdapter implements JsonDeserializer<Shape>
     {

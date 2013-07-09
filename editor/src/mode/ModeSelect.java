@@ -58,6 +58,14 @@ public class ModeSelect extends Mode
     }
 
     @Override
+    public void keyTyped(KeyEvent e) {
+        super.keyTyped(e);
+        if(e.getKeyCode() == KeyEvent.VK_DELETE) editor.removeShapes(selection);
+    }
+    
+    
+
+    @Override
     public void draw(Graphics2D g2d) {
         super.draw(g2d);
         if(selectionBox != null && selectionBox.isComplete()) selectionBox.draw(editor, g2d);

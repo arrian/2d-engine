@@ -4,7 +4,9 @@
  */
 package shape;
 
+import java.awt.Composite;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -41,15 +43,22 @@ public class ShapeImage extends Shape {
     @Override
     protected void draw(Graphics2D g2d, ScreenPosition position, double scale)
     {
+
         if(image != null)
         {
-            g2d.drawImage(image, null, (int) position.getX() - image.getWidth() / 2, (int) position.getY() - image.getHeight());
+            AffineTransform oldTransform = g2d.getTransform();
+            g2d.translate(position.getX(), position.getY());
+            g2d.rotate(rotation);
+            //g2d.drawImage(image, null, (int) position.getX() - image.getWidth() / 2, (int) position.getY() - image.getHeight());
+            g2d.drawImage(image, null,  - image.getWidth() / 2, - image.getHeight());
+            g2d.setTransform(oldTransform);
         }
         else 
         {
             g2d.fillOval((int) position.getX() - 5, (int) position.getY() - 5, 10, 10);
             g2d.drawString(name == null ? Integer.toString(id) : name, (int) position.getX() + 5, (int) position.getY() - 5);
         }
+        
     }
     
     @Override

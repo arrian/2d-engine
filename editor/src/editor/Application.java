@@ -38,8 +38,10 @@ public class Application extends javax.swing.JFrame {
     public Application() {
         initComponents();
         setFocusable(true);
-        addKeyListener((Editor) editorPanel);
-        addMouseWheelListener((Editor) editorPanel);
+        addKeyListener(getEditor());
+        dataPanel.addKeyListener(getEditor());
+        editorPanel.addKeyListener(getEditor());
+        addMouseWheelListener(getEditor());
 
         MouseListener ml = new MouseAdapter() {
 
