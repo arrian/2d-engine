@@ -52,7 +52,7 @@ public class ShapeIntersect {
     
     private static Rectangle2D.Double rectangleToRectangle2D(ShapeRectangle rectangle)
     {
-        return new Rectangle2D.Double(rectangle.getPosition().getX(), rectangle.getPosition().getY(), rectangle.getWidth(), rectangle.getHeight());
+        return new Rectangle2D.Double(rectangle.getPosition().getX(), rectangle.getPosition().getY() - rectangle.getHeight(), rectangle.getWidth(), rectangle.getHeight());
     }
     
     private static Line2D.Double lineToLine2D(ShapeLine line)

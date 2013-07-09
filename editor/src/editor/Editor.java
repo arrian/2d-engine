@@ -29,6 +29,7 @@ import world.Cell;
 import world.World;
 import data.DataItem;
 import java.io.IOException;
+import util.*;
 
 public class Editor extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener {
 
@@ -270,24 +271,42 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         return new ScreenPosition(xDiff + getWidth() / 2, yDiff + getHeight() / 2);
     }
     
-    void paste() {
+    public void paste() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    void copy() {
+    public void copy() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    void duplicate() {
+    public void duplicate() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    void delete() {
+    public void delete() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    void setShowDebug(boolean selected) {
+    public void setShowDebug(boolean selected) {
         this.debug = selected;
+        repaint();
+    }
+    
+    ScreenPosition getScreenCentre()
+    {
+        return new ScreenPosition((float) getWidth() / 2f, (float) getHeight() / 2f);
+    }
+    
+    public void addMarker(String name)
+    {
+        world.addMarker(new Marker(name, worldPosition));
+        repaint();
+    }
+    
+    public void zoom(double factor)
+    {
+        worldScale += factor;
+        if(worldScale <= 0) worldScale = 0.1;
         repaint();
     }
 }

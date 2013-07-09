@@ -17,6 +17,12 @@ public class Settings{
     public static final String DEFAULT_IMAGES_FOLDER = "images\\";
     public static final String DEFAULT_DATA_FILE = "game.dat";
     
+    public static final String DEFAULT_EXECUTABLE_LOCATIONS[] = {"..\\..\\bin\\debug\\", "..\\bin\\debug\\", ".\\bin\\debug\\", ".\\"};
+    public static String DEFAULT_EXECUTABLE_LOCATION = "";
+    public static final String DEFAULT_EXECUTABLE = "Survive.exe";
+    
+    public static final String IMAGE_MARKER = "icons\\marker-large.png";
+    
     public static final float DEFAULT_WORLD_SCALE = 30.0f;
     public static final float DEFAULT_IMAGE_SCALE = 1 / 30.0f;
     public static final double CELL_SIZE = 600;
@@ -30,6 +36,15 @@ public class Settings{
             if(Files.exists(FileSystems.getDefault().getPath(path))) 
             {
                 DEFAULT_RESOURCE_LOCATION = path;
+                break;
+            }
+        }
+        
+        for(String path : DEFAULT_EXECUTABLE_LOCATIONS)
+        {
+            if(Files.exists(FileSystems.getDefault().getPath(path))) 
+            {
+                DEFAULT_EXECUTABLE_LOCATION = path;
                 break;
             }
         }

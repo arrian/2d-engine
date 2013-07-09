@@ -18,6 +18,8 @@ import java.io.*;
 import java.util.ArrayList;
 import shape.ShapePoint;
 import shape.ShapeRectangle;
+import util.Marker;
+import util.WorldPosition;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -31,8 +33,10 @@ public class World {
     
     private String name = "Test World";
     private HashMap<String, Cell> cells = new HashMap<String, Cell>();
+    private ArrayList<Marker> markers = new ArrayList<Marker>();
 
-    public World() {
+    public World() 
+    {
     }
 
     public void loadCell(CellIndex index)
@@ -45,7 +49,8 @@ public class World {
         cells.put(cell.getIndex().toString(), cell);
     }
 
-    public Cell getCell(CellIndex index) {
+    public Cell getCell(CellIndex index) 
+    {
         return cells.get(index.toString());
     }
 
@@ -97,6 +102,7 @@ public class World {
     public void drawDebug(Editor editor, Graphics2D g2d)
     {
         for (Cell cell : cells.values()) cell.drawDebug(editor, g2d);
+        for (Marker marker : markers) marker.draw(editor, g2d);
     }
 
     public ArrayList<Shape> query(ShapeRectangle rectangle) 
@@ -119,5 +125,13 @@ public class World {
         return name;
     }
     
+    public void addMarker(Marker marker)
+    {
+        markers.add(marker);
+    }
+
+    public ArrayList<Marker> getMarkers() {
+        return markers;
+    }
     
 }

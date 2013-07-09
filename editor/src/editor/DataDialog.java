@@ -21,13 +21,14 @@ public class DataDialog extends javax.swing.JDialog {
      */
     public DataDialog(java.awt.Frame parent, DataItem item) {
         super(parent, true);
-        setLocationRelativeTo(parent);
+        
         this.item = item;
         initComponents();
         idText.setText(Integer.toString(item.getId()));
         nameText.setText(item.getName());
         resourcesText.setText(item.getResources().toString());
         typeCombo.setSelectedIndex(item.getType().ordinal());   
+        setLocationRelativeTo(parent);
     }
 
     /**

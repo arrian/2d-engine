@@ -7,3 +7,5 @@ bin/debug/Survive.ilk
 bin/debug/Survive.exe
 bin/release/Survive.pdb
 bin/release/Survive.exe
+editor/allegro.log
+bin/debug/allegro.log
