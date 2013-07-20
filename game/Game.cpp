@@ -63,7 +63,7 @@ Game::Game(bool fullscreen)
 
   _display = new Display(display);
 
-  al_set_window_title(display, TITLE);
+  al_set_window_title(display, TITLE.c_str());
 
   event_queue = al_create_event_queue();
   if(!event_queue) 
@@ -178,7 +178,7 @@ void Game::draw()
   world.draw(_display);
 
 #ifdef _DEBUG
-  al_draw_text(debugFont, al_map_rgb(255,255,255), 0.0f, 0.0f, 0, VERSION);
+  al_draw_text(debugFont, al_map_rgb(255,255,255), 0.0f, 0.0f, 0, VERSION.c_str());
 #endif
 
   al_flip_display();
@@ -196,17 +196,25 @@ int main(int argc, char **argv)
 {
   try 
   {
+    //throw FactoryException("This is a message.");
     Game game(false);
     game.run();
   }
+  catch(const FactoryException& e)
+  {
+    MessageBoxA(0, e.what(), "Error", MB_OK | MB_ICONERROR);
+  }
   catch(const std::exception& e)
   {
-    std::cerr << e.what() << std::endl;
+    std::string error("An exception occurred. " + std::string(e.what()));
+    MessageBoxA(0, error.c_str(), "Error", MB_OK | MB_ICONERROR);
+    //std::cerr << e.what() << std::endl;
     return -1;
   }
   catch(...)
   {
-    std::cerr << "An unknown error occurred." << std::endl;
+    MessageBoxA(0, "An unknown exception occurred.", "Error", MB_OK | MB_ICONERROR);
+    //std::cerr << "An unknown error occurred." << std::endl;
     return -1;
   }
   return 0;

@@ -87,7 +87,7 @@ public class ModeMove extends Mode
         for(Shape shape : selection)
         {
             WorldPosition pos = shape.getPosition();
-            shape.setPosition(new WorldPosition(pos.getCellIndex(), pos.getX() - dx / editor.getWorldScale(), pos.getY() + dy / editor.getWorldScale()));
+            editor.moveShape(shape, new WorldPosition(pos.getCellIndex(), pos.getX() - dx / editor.getWorldScale(), pos.getY() + dy / editor.getWorldScale()));
         }
         
         previous = new ScreenPosition(e.getPoint());

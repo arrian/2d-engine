@@ -35,6 +35,7 @@ import shape.Shape;
 import shape.ShapePoint;
 import shape.ShapeRectangle;
 import util.*;
+import util.ActionItem.MoveShapeAction;
 
 public class Editor extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener {
 
@@ -329,17 +330,25 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     
     public void addMarker(String name)
     {
-        execute(new MarkerAction(world, ActionItem.ActionType.ADD, new Marker(name, worldPosition)));
+        execute(new ActionItem.AddMarkerAction(world, ActionItem.ActionType.DO, new Marker(name, worldPosition)));
     }
     
     public void addShape(Shape shape)
     {
-        execute(new ShapeAction(world, ActionItem.ActionType.ADD, shape));
+        execute(new ActionItem.AddShapeAction(world, ActionItem.ActionType.DO, shape));
     }
     
     public void removeShapes(ArrayList<Shape> shapes)
     {
-        execute(new ShapeArrayAction(world, ActionItem.ActionType.ADD, shapes));
+        execute(new ActionItem.AddShapeArrayAction(world, ActionItem.ActionType.UNDO, shapes));
+    }
+    
+    public void moveShape(Shape shape, WorldPosition position)
+    {
+        ActionItem action = undoStack.lastElement();
+        if(action != null && action instanceof MoveShapeAction && action.getObject() == shape) ((MoveShapeAction) action).setNewPosition(position);
+        else action = new ActionItem.MoveShapeAction(world, ActionItem.ActionType.DO, shape, position);
+        execute(action);
     }
     
     public void execute(ActionItem action)
@@ -358,63 +367,5 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         repaint();
     }
     
-    private class MarkerAction extends ActionItem<Marker>
-    {
-        World world;
 
-        public MarkerAction(World world, ActionItem.ActionType initialAction, Marker object) {
-            super(initialAction, object);
-            this.world = world;
-        }
-
-        @Override
-        public void add() {
-            world.addMarker(object);
-        }
-
-        @Override
-        public void remove() {
-            world.removeMarker(object);
-        }
-    }
-    
-    private class ShapeAction extends ActionItem<Shape>
-    {
-        World world;
-        
-        public ShapeAction(World world, ActionItem.ActionType initialAction, Shape object) {
-            super(initialAction, object);
-            this.world = world;
-        }
-
-        @Override
-        public void add() {
-            world.addShape(object);
-        }
-
-        @Override
-        public void remove() {
-            world.removeShape(object);
-        }
-    }
-    
-    private class ShapeArrayAction extends ActionItem<ArrayList<Shape>>
-    {
-        World world;
-        
-        public ShapeArrayAction(World world, ActionItem.ActionType initialAction, ArrayList<Shape> object) {
-            super(initialAction, object);
-            this.world = world;
-        }
-
-        @Override
-        public void add() {
-            for(Shape shape : object) world.addShape(shape);
-        }
-
-        @Override
-        public void remove() {
-            for(Shape shape : object) world.removeShape(shape);
-        }
-    }
 }

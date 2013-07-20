@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 
+#include <windows.h>
+
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
@@ -13,6 +15,7 @@
 #include "Menu.h"
 #include "Display.h"
 #include "FontUtil.h"
+#include "FactoryException.h"
 
 class Game
 {

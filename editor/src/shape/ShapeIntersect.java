@@ -13,7 +13,7 @@ import java.awt.geom.Rectangle2D;
  */
 public class ShapeIntersect {
     
-    protected static final int HIT_EPSILON = 4;
+    protected static final float HIT_EPSILON = 1.0f;
     
     protected static boolean intersects(ShapeLine line, ShapePoint point) {
         return lineToLine2D(line).intersects(pointToRectangle2D(point));
@@ -41,11 +41,11 @@ public class ShapeIntersect {
     
     private static Rectangle2D.Double pointToRectangle2D(ShapePoint point)
     {
-        int boxX = (int) (point.getPosition().getX() - HIT_EPSILON / 2);
-        int boxY = (int) (point.getPosition().getY() - HIT_EPSILON / 2);
+        double boxX = (point.getPosition().getX() - HIT_EPSILON / 2.0);
+        double boxY = (point.getPosition().getY() - HIT_EPSILON / 2.0);
 
-        int width = HIT_EPSILON;
-        int height = HIT_EPSILON;
+        double width = HIT_EPSILON;
+        double height = HIT_EPSILON;
         
         return new Rectangle2D.Double(boxX, boxY, width, height);
     }

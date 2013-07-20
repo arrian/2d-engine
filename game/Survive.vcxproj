@@ -84,6 +84,7 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dynamic.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="FactoryException.h" />
     <ClInclude Include="FileUtil.h" />
     <ClInclude Include="FontUtil.h" />
     <ClInclude Include="Game.h" />
