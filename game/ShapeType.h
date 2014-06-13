@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+#include <map>
 #include "MapUtil.h"
 
 class ShapeType
@@ -8,13 +10,13 @@ public:
   ShapeType()
   {
     MapUtil().map_init(StringToDataType)
-      ("NONE", NONE)
-      ("RECTANGLE", RECTANGLE)
-      ("LINE", LINE)
-      ("LINE_STRIP", LINE_STRIP)
-      ("POINT", POINT)
-      ("IMAGE", IMAGE)
-      ("IMAGE_ANIMATED", IMAGE_ANIMATED);
+      (std::string("NONE"), NONE)
+      (std::string("RECTANGLE"), RECTANGLE)
+      (std::string("LINE"), LINE)
+      (std::string("LINE_STRIP"), LINE_STRIP)
+      (std::string("POINT"), POINT)
+      (std::string("IMAGE"), IMAGE)
+      (std::string("IMAGE_ANIMATED"), IMAGE_ANIMATED);
   }
 
   enum Type

@@ -41,6 +41,7 @@ const std::string WORLD_FILE = "world_debug_10.dat";
 
 
 //Libraries
+#ifdef _WIN32
 #ifdef _DEBUG
 #pragma comment(lib, "allegro-5.0.9-monolith-mt-debug.lib")
 #pragma comment(lib, "Box2D-debug.lib")
@@ -48,4 +49,5 @@ const std::string WORLD_FILE = "world_debug_10.dat";
 #pragma comment(lib, "allegro-5.0.9-monolith-mt.lib" )
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")//hide console
 #pragma comment(lib, "Box2D.lib")
+#endif
 #endif
