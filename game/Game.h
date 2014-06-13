@@ -4,7 +4,9 @@
 #include <map>
 #include <string>
 
+#ifdef _WIN32
 #include <windows.h>
+#endif
 
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_image.h"

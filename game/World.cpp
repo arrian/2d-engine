@@ -57,6 +57,6 @@ Cell* World::loadCell(int x, int y)
 
 void World::unloadCell(int x, int y)
 {
-  throw std::exception("unload cell not implemented");
+  throw std::runtime_error("unload cell not implemented");
 }
 

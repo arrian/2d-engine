@@ -61,7 +61,7 @@ public:
     nFont.referenceCount = 1;
     nFont.font = al_load_ttf_font((FileUtil::getFontPath() + font).c_str(), 16, 0);//TODO add font size support
 
-    if(!nFont.font) throw std::exception("failed to load the given font");
+    if(!nFont.font) throw std::runtime_error("failed to load the given font");
 
     fonts.insert(std::pair<std::string, Font>(font, nFont));
     return nFont.font;

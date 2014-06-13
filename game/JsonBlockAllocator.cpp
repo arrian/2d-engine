@@ -1,3 +1,4 @@
+#include <stdlib.h>//if osx?
 #include <memory.h>
 #include <algorithm>
 #include "JsonBlockAllocator.h"

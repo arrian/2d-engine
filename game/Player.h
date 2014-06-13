@@ -100,7 +100,7 @@ public:
 
   void jump()
   {
-    if(numberOfContacts > 0) feet->ApplyLinearImpulse(b2Vec2(0, PLAYER_JUMP_STRENGTH), body->GetWorldCenter());
+    if(numberOfContacts > 0) feet->ApplyLinearImpulse(b2Vec2(0, PLAYER_JUMP_STRENGTH), body->GetWorldCenter(), true);
   }
 
   void update()
@@ -112,7 +112,7 @@ public:
     float velChange = desiredVel - vel.x;
     float impulse = body->GetMass() * velChange;
     if(numberOfContacts < 1) impulse *= 0.1f;
-    body->ApplyLinearImpulse(b2Vec2(impulse,0), body->GetWorldCenter());
+    body->ApplyLinearImpulse(b2Vec2(impulse,0), body->GetWorldCenter(), true);
 
     b2Vec2 pos(body->GetPosition());
     position.x = pos.x;

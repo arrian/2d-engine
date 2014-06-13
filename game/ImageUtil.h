@@ -61,7 +61,7 @@ public:
     nImage.referenceCount = 1;
     nImage.bitmap = al_load_bitmap((FileUtil::getImagePath() + image).c_str());
 
-    if(!nImage.bitmap) throw std::exception("failed to load the given bitmap");
+    if(!nImage.bitmap) throw std::runtime_error("failed to load the given bitmap");
 
     images.insert(std::pair<std::string, Image>(image, nImage));
     return nImage.bitmap;

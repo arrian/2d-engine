@@ -1,0 +1,4 @@
+env = Environment()
+env.Append(CPPFLAGS=['-Wall','-g'])
+env.Program('game',
+            Glob('*.cpp'))

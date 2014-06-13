@@ -30,6 +30,7 @@ const double SECONDS_PER_FRAME = 1.0 / FPS;
 const std::string TITLE = "Survive";
 
 //Paths
+const int MAX_PATH = 1024;
 const std::string RESOURCE_PATH = "/../../res/";
 const std::string IMAGE_FOLDER = "images/";
 const std::string DATA_FOLDER = "data/";

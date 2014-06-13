@@ -99,11 +99,11 @@ public:
     case ShapeType::LINE_STRIP: 
       break;
     case ShapeType::IMAGE: 
-      if(item.resources.size() == 0) throw std::exception("no image found for image shape");
+      if(item.resources.size() == 0) throw std::runtime_error("no image found for image shape");
       shape = std::shared_ptr<Shape>(new ShapeImage(item.resources[0]));
       break;
     case ShapeType::IMAGE_ANIMATED: 
-      if(item.resources.size() == 0) throw std::exception("no images found for animated image shape");
+      if(item.resources.size() == 0) throw std::runtime_error("no images found for animated image shape");
       shape = std::shared_ptr<Shape>(new ShapeImageAnimated(Animations()));//TODO: get animations including states and frames
       break;
     case ShapeType::POINT:

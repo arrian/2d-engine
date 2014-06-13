@@ -10,10 +10,10 @@ Game::Game(bool fullscreen)
   debugFont(NULL)
 {
 
-  if(!al_init()) throw std::exception("Failed to initialise allegro.");
+  if(!al_init()) throw std::runtime_error("Failed to initialise allegro.");
 
   timer = al_create_timer(SECONDS_PER_FRAME);
-  if(!timer) throw std::exception("Failed to create timer.");
+  if(!timer) throw std::runtime_error("Failed to create timer.");
 
   al_init_image_addon();
   al_init_primitives_addon();
@@ -45,7 +45,7 @@ Game::Game(bool fullscreen)
   if(!display) 
   {
     al_destroy_timer(timer);
-    throw std::exception("Failed to create display.");
+    throw std::runtime_error("Failed to create display.");
     
   }
 
@@ -70,7 +70,7 @@ Game::Game(bool fullscreen)
   {
     al_destroy_display(display);
     al_destroy_timer(timer);
-    throw std::exception("Failed to create event queue.");
+    throw std::runtime_error("Failed to create event queue.");
   }
 
   
@@ -202,18 +202,29 @@ int main(int argc, char **argv)
   }
   catch(const FactoryException& e)
   {
+    #ifdef _WIN32
     MessageBoxA(0, e.what(), "Error", MB_OK | MB_ICONERROR);
+    #else
+    std::cerr << "Error" << e.what() << std::endl;
+    #endif
   }
   catch(const std::exception& e)
   {
     std::string error("An exception occurred. " + std::string(e.what()));
+    #ifdef _WIN32
     MessageBoxA(0, error.c_str(), "Error", MB_OK | MB_ICONERROR);
-    //std::cerr << e.what() << std::endl;
+    #else
+    std::cerr << "Error" << error.c_str() << std::endl;
+    #endif
     return -1;
   }
   catch(...)
   {
+    #ifdef _WIN32
     MessageBoxA(0, "An unknown exception occurred.", "Error", MB_OK | MB_ICONERROR);
+    #else
+    std::cerr << "An unknown exception occurred." << std::endl; 
+    #endif
     //std::cerr << "An unknown error occurred." << std::endl;
     return -1;
   }
