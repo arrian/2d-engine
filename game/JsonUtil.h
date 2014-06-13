@@ -61,6 +61,7 @@ public:
 
   static json_value* getChild(json_value* parent, std::string name)
   {
+    if(!parent) throw std::runtime_error("could not get child of null parent node");
     for(json_value* childIt = parent->first_child; childIt; childIt = childIt->next_sibling)
     {
       if(std::string(childIt->name) == name) return childIt;
