@@ -1,0 +1,19 @@
+{
+  "graphics": {
+    "width": 1024,
+    "height": 768
+  },
+  "controls": [
+  	{ "keys": ["left"], "command": "left" },
+  	{ "keys": ["right"], "command": "right" },
+  	{ "keys": ["up"], "command": "up" },
+  	{ "keys": ["down"], "command": "down" },
+  	{ "keys": ["space"], "command": "jump" },
+  	{ "keys": ["tilde"], "command": "console" }
+  ],
+  "audio": {
+  	"effects": 100,
+  	"music": 100,
+  	"master": 100
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "id": 1,
+              "type": "RECTANGLE",
+              "resources": [],
+              "name": "Climbable"
+            }
+          ],
+          "name": "Interactive Climbable"
+        },
+        {
+          "children": [
+            {
+              "id": 2,
+              "type": "LINE",
+              "resources": [],
+              "name": "Ground Line"
+            },
+            {
+              "id": 3,
+              "type": "LINE_STRIP",
+              "resources": [],
+              "name": "Ground Strip"
+            }
+          ],
+          "name": "Interactive Ground"
+        },
+        {
+          "children": [
+            {
+              "id": 60,
+              "type": "LINE",
+              "resources": [],
+              "name": "Ceiling Line"
+            },
+            {
+              "id": 61,
+              "type": "LINE_STRIP",
+              "resources": [],
+              "name": "Ceiling Strip"
+            }
+          ],
+          "name": "Interactive Ceiling"
+        },
+        {
+          "children": [
+            {
+              "id": 4,
+              "type": "IMAGE",
+              "resources": [
+                "tree.png"
+              ],
+              "name": "Tree"
+            },
+            {
+              "id": 5,
+              "type": "IMAGE",
+              "resources": [
+                "door.png"
+              ],
+              "name": "Door"
+            },
+            {
+              "id": 6,
+              "type": "IMAGE",
+              "resources": [
+                "chest.png"
+              ],
+              "name": "Chest"
+            },
+            {
+              "id": 7,
+              "type": "IMAGE",
+              "resources": [
+                "sword.png"
+              ],
+              "name": "Sword"
+            },
+            {
+              "id": 62,
+              "type": "IMAGE",
+              "resources": [
+                "box.png"
+              ],
+              "name": "Box"
+            }
+          ],
+          "name": "Interactive Object"
+        }
+      ],
+      "name": "Interactive"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "id": 8,
+                  "type": "IMAGE_ANIMATED",
+                  "resources": [
+                    "grass_long_1a.png",
+                    "grass_long_1b.png",
+                    "grass_long_1c.png",
+                    "grass_long_1d.png"
+                  ],
+                  "name": "Grass Long 1"
+                },
+                {
+                  "id": 9,
+                  "type": "IMAGE_ANIMATED",
+                  "resources": [
+                    "grass_long_2.png"
+                  ],
+                  "name": "Grass Long 2"
+                },
+                {
+                  "id": 10,
+                  "type": "IMAGE_ANIMATED",
+                  "resources": [
+                    "grass_long_3.png"
+                  ],
+                  "name": "Grass Long 3"
+                }
+              ],
+              "name": "Grass"
+            },
+            {
+              "children": [
+                {
+                  "id": 11,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Deciduous 1"
+                },
+                {
+                  "id": 12,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Deciduous 2"
+                },
+                {
+                  "id": 13,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Deciduous 3"
+                },
+                {
+                  "id": 14,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Deciduous 4"
+                },
+                {
+                  "id": 15,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Coniferous 1"
+                },
+                {
+                  "id": 16,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Coniferous 2"
+                },
+                {
+                  "id": 17,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Coniferous 3"
+                },
+                {
+                  "id": 18,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tree Coniferous 4"
+                }
+              ],
+              "name": "Tree"
+            },
+            {
+              "children": [
+                {
+                  "id": 19,
+                  "type": "POINT",
+                  "resources": [
+                    "window_1.png"
+                  ],
+                  "name": "Window 1"
+                },
+                {
+                  "id": 20,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Window 2"
+                },
+                {
+                  "id": 21,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Window 3"
+                },
+                {
+                  "id": 22,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Street Lamp 1"
+                },
+                {
+                  "id": 23,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Street Lamp 2"
+                },
+                {
+                  "id": 24,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Beacon"
+                }
+              ],
+              "name": "Light"
+            },
+            {
+              "children": [
+                {
+                  "id": 62,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Fire"
+                },
+                {
+                  "id": 63,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Steam"
+                },
+                {
+                  "id": 67,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Smoke"
+                },
+                {
+                  "id": 64,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Sparks"
+                },
+                {
+                  "id": 65,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Snow"
+                },
+                {
+                  "id": 66,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Rain"
+                }
+              ],
+              "name": "Emitter"
+            }
+          ],
+          "name": "Scenery Dynamic"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "id": 25,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Grass 1"
+                },
+                {
+                  "id": 26,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Grass 2"
+                },
+                {
+                  "id": 27,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Grass 3"
+                },
+                {
+                  "id": 28,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Flowers 1"
+                },
+                {
+                  "id": 29,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Flowers 2"
+                },
+                {
+                  "id": 30,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Stone 1"
+                },
+                {
+                  "id": 31,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Ground Stone 2"
+                }
+              ],
+              "name": "Ground"
+            },
+            {
+              "children": [
+                {
+                  "id": 32,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Boulder Small 1"
+                },
+                {
+                  "id": 33,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Boulder Medium 1"
+                },
+                {
+                  "id": 34,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Boulder Large 1"
+                }
+              ],
+              "name": "Boulder"
+            },
+            {
+              "children": [
+                {
+                  "id": 35,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Grass 1"
+                },
+                {
+                  "id": 36,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Grass 2"
+                },
+                {
+                  "id": 37,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Grass 3"
+                }
+              ],
+              "name": "Grass"
+            },
+            {
+              "children": [
+                {
+                  "id": 38,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Flowers Mixed 1"
+                },
+                {
+                  "id": 39,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Flowers Red 1"
+                },
+                {
+                  "id": 40,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Flowers Blue 1"
+                },
+                {
+                  "id": 41,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Flowers Purple 1"
+                }
+              ],
+              "name": "Flowers"
+            },
+            {
+              "children": [
+                {
+                  "id": 42,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "House 1"
+                },
+                {
+                  "id": 43,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "House 2"
+                },
+                {
+                  "id": 44,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "House 3"
+                },
+                {
+                  "id": 45,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "House 4"
+                },
+                {
+                  "id": 46,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tower 1"
+                },
+                {
+                  "id": 47,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Tower 2"
+                },
+                {
+                  "id": 48,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Arch 1"
+                },
+                {
+                  "id": 49,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Arch 2"
+                },
+                {
+                  "id": 50,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Warehouse 1"
+                },
+                {
+                  "id": 51,
+                  "type": "POINT",
+                  "resources": [],
+                  "name": "Warehouse 2"
+                }
+              ],
+              "name": "City"
+            }
+          ],
+          "name": "Scenery Static"
+        }
+      ],
+      "name": "Scenery"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "id": 52,
+              "type": "POINT",
+              "resources": [],
+              "name": "Slime"
+            },
+            {
+              "id": 53,
+              "type": "POINT",
+              "resources": [],
+              "name": "Worm"
+            }
+          ],
+          "name": "Creature Aggressive"
+        },
+        {
+          "children": [
+            {
+              "id": 54,
+              "type": "POINT",
+              "resources": [],
+              "name": "Rabbit"
+            },
+            {
+              "id": 55,
+              "type": "POINT",
+              "resources": [],
+              "name": "Cow"
+            },
+            {
+              "id": 56,
+              "type": "POINT",
+              "resources": [],
+              "name": "Bird"
+            },
+            {
+              "id": 57,
+              "type": "POINT",
+              "resources": [],
+              "name": "Bat"
+            }
+          ],
+          "name": "Creature Passive"
+        },
+        {
+          "children": [
+            {
+              "id": 58,
+              "type": "POINT",
+              "resources": [],
+              "name": "Greg"
+            }
+          ],
+          "name": "Creature Interactive"
+        }
+      ],
+      "name": "Creature"
+    },
+    {
+      "children": [
+        {
+          "id": 59,
+          "type": "IMAGE",
+          "resources": [
+            "player.png"
+          ],
+          "name": "Player"
+        }
+      ],
+      "name": "Player"
+    }
+  ],
+  "name": "World"
+}
