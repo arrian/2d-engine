@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>791680B5-DA88-455F-9098-7B62B3DB0ADE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PolycodeTemplate</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1393BEA5-A721-4870-B9D5-D803FBFA6732</key>
+		<string>https://github.com/arrian/2d-engine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>build/osx/PolycodeTemplate.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1393BEA5-A721-4870-B9D5-D803FBFA6732</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/arrian/2d-engine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1393BEA5-A721-4870-B9D5-D803FBFA6732</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1393BEA5-A721-4870-B9D5-D803FBFA6732</string>
+			<key>IDESourceControlWCCName</key>
+			<string>2d-engine</string>
+		</dict>
+	</array>
+</dict>
+</plist>

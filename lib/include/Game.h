@@ -18,12 +18,12 @@ using namespace Polycode;
 class Game : public EventHandler
 {
 public:
-  Game();
+  Game(PolycodeView* view);
   ~Game(void);
 
   bool update();
 
-  void handleEvent(Event *e);
+  void handleEvent(Event* event);
 
 private:
   Core *core;
