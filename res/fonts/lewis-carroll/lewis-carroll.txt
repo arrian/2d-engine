@@ -1,0 +1,15 @@
+Lewis Carroll and Lewis Carroll Dings fonts
+These fonts are created by Jaz <fonts@ezork.com>, July 2000. Lewis Carroll is
+based on Lewis Carroll's handwriting from Alice's Adventures under Ground.
+Lewis Carroll Dings contains other symbols in Carroll's handwriting. The fonts
+are free; use as you like. See the website:
+<http://www.ezork.com/carrollfont/>
+
+14 Nov 2001: Version 1.1.1
+Added the right Windows flags so that the Lewis Carroll font is accessible as
+a Unicode font. The twelve Esperanto letters are available for use, for
+example.
+
+16 Mar 2002: Version 1.1.2
+The fonts didn't work correctly under Windows 2000, so I've regenerated them.
+They should work fine now.

@@ -1,5 +1,0 @@
-env = Environment(LIBS = ['liballegro', 'liballegro_main', 'liballegro_ttf', 'liballegro_primitives', 'liballegro_audio', 'liballegro_color', 'liballegro_font', 'liballegro_image', 'libBox2D'])
-env.Append(CPPFLAGS=['-Wall','-g','-mmacosx-version-min=10.9'])
-#env.Append(LINKFLAGS = ['-install_name @executable_path/liballegro.dylib'])
-env.Program('game',
-            Glob('*.cpp'))

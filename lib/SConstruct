@@ -1,0 +1,31 @@
+env = Environment(CPPPATH = ['.'],
+	LIBPATH = ['../deps/polycode'],
+	LIBS = [
+	'libPolycore',
+	'libPolycode2DPhysics',
+	'libpng15',
+	'libfreetype',
+	'liblibogg',
+	'liblibvorbis',
+	'liblibvorbisfile',
+	'liblua5.1',
+	'libphysfs',
+	'libz',
+	'libPolycode2DPhysics',
+	'libPolycode3DPhysics',
+	'libPolycodeTUIO',
+	'libPolycodeUI',
+	'libBox2D'
+	])
+
+
+Repository('include')
+
+Repository('/Users/arrian/Dev/polycode-dev/Core/Contents/Include')
+Repository('/Users/arrian/Dev/polycode-dev/Modules/Contents/2DPhysics/Include')
+Repository('/Users/arrian/Dev/polycode-dev/Modules/Contents/UI/Include')
+Repository('/Users/arrian/Dev/polycode-dev/Dependencies/freetype/src/freetype/include')
+
+env.Append(CPPFLAGS=['-Wall', '-g', '-mmacosx-version-min=10.9'])
+env.Program('game',
+            Glob('src/*.cpp'))

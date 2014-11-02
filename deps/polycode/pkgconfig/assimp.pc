@@ -1,0 +1,10 @@
+prefix=/Users/arrian/Dev/polycode-dev/Dependencies/../Release/Darwin/Framework/Tools/Dependencies
+exec_prefix=/Users/arrian/Dev/polycode-dev/Dependencies/../Release/Darwin/Framework/Tools/Dependencies/bin
+libdir=/Users/arrian/Dev/polycode-dev/Dependencies/../Release/Darwin/Framework/Tools/Dependencies/lib
+includedir=/Users/arrian/Dev/polycode-dev/Dependencies/../Release/Darwin/Framework/Tools/Dependencies/include/assimp
+
+Name: Assimp
+Description: Import various well-known 3D model formats in an uniform manner.
+Version: 2.0
+Libs: -L${libdir} -lassimp
+Cflags: -I${includedir} 
