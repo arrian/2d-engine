@@ -23,3 +23,5 @@
 *.ear
 
 /obj/build/*
+/old/*
+.sconsign.dblite
