@@ -4,6 +4,7 @@
 
 #import "PolycodeView.h"
 #include "Polycode.h"
+#include "World.h"
 
 using namespace Polycode;
 
@@ -16,4 +17,5 @@ public:
     
 private:
     Core *core;
+    World* world;
 };

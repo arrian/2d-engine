@@ -1,5 +1,7 @@
+######################################### Static Lib
+
 env = Environment(CPPPATH = ['.'],
-	LIBPATH = ['../deps/polycode'],
+	LIBPATH = ['../deps/polycode/Core/Dependencies/lib','../deps/polycode/Core/lib','../deps/polycode/Modules/lib','../deps/polycode/Modules/Dependencies/lib'],
 	LIBS = [
 	'libPolycore',
 	'libPolycode2DPhysics',
@@ -27,5 +29,10 @@ Repository('/Users/arrian/Dev/polycode-dev/Modules/Contents/UI/Include')
 Repository('/Users/arrian/Dev/polycode-dev/Dependencies/freetype/src/freetype/include')
 
 env.Append(CPPFLAGS=['-Wall', '-g', '-mmacosx-version-min=10.9'])
-env.Program('game',
-            Glob('src/*.cpp'))
+staticLib = env.StaticLibrary(target = 'Game',
+            source = Glob('src/*.cpp'))
+
+# staticInstall = env.Install('../bin/', staticLib)
+# env.Program('game',
+            # Glob('src/*.cpp'))
+
