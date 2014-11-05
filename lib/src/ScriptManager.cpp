@@ -1,23 +1,78 @@
-#include <Python.h>
+#include "ScriptManager.h"
 
-// class Console
-// {
-// public:
-// 	Console();
-// 	~Console();
+// #include <Python.h>
+#include <boost/python.hpp>
+using namespace boost;
+
+#include "PythonModules.h"
+
+ScriptManager::ScriptManager()
+{
+	Py_Initialize();
+	PyRun_SimpleString("import sys");
+	PyRun_SimpleString("sys.path.insert(0, '')");
+}
+
+ScriptManager::~ScriptManager()
+{
+	Py_Finalize();
+}
+
+void ScriptManager::import(std::string import)
+{
+	PyRun_SimpleString("import " + import);
+}
+
+void ScriptManager::run(std::string command)
+{
+	PyRun_SimpleString(command);
+}
+
+void ScriptManager::checkError()
+{
+	if(PyErr_Occurred()) PyErr_Print();
+}
+
+std::string ScriptManager::getError()
+{
+	PyObject *ptype, *pvalue, *ptraceback;
+	PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+
+	return std::string(PyString_AsString(pvalue));
+}
 
 
 
+static int numargs=0;
 
-// private:
+/* Return the number of arguments of the application command line */
+static PyObject*
+emb_numargs(PyObject *self, PyObject *args)
+{
+    if(!PyArg_ParseTuple(args, ":numargs"))
+        return NULL;
+    return PyLong_FromLong(numargs);
+}
 
+static PyMethodDef EmbMethods[] = {
+    {"numargs", emb_numargs, METH_VARARGS,
+     "Return the number of arguments received by the process."},
+    {NULL, NULL, 0, NULL}
+};
 
+static PyModuleDef EmbModule = {
+    PyModuleDef_HEAD_INIT, "emb", NULL, -1, EmbMethods,
+    NULL, NULL, NULL, NULL
+};
 
-
-// };
+static PyObject*
+PyInit_emb(void)
+{
+    return PyModule_Create(&EmbModule);
+}
 
 // To build:
-// g++ Console.cpp -L/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/lib/python3.4/config-3.4m -ldl -framework CoreFoundation -lpython3.4m -I"/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m/" -o test
+// g++ ScriptManager.cpp -L/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/lib/python3.4/config-3.4m -ldl -framework CoreFoundation -lpython3.4m -I"/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m/" -o test
 int
 main(int argc, char *argv[])
 {
@@ -29,6 +84,9 @@ main(int argc, char *argv[])
         fprintf(stderr,"Usage: call pythonfile funcname [args]\n");
         return 1;
     }
+
+    numargs = argc;
+	PyImport_AppendInittab("emb", &PyInit_emb);
 
     Py_Initialize();
     PyRun_SimpleString("import sys"); 

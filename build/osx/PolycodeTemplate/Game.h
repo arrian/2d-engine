@@ -1,10 +1,8 @@
-//
-// Polycode template. Write your code here.
-//
+#pragma once
 
 #import "PolycodeView.h"
 #include "Polycode.h"
-#include "World.h"
+#include "GameCore.h"
 
 using namespace Polycode;
 
@@ -16,6 +14,6 @@ public:
     bool Update();
     
 private:
-    Core *core;
-    World* world;
+    Core* core;
+    GameCore* gameCore;
 };
