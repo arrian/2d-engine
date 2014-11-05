@@ -60,18 +60,18 @@ BOOST_PYTHON_MODULE(core) {
 // Game Bindings
 
 BOOST_PYTHON_MODULE(world_manager) {
-  class_<WorldManager>("WorldManager", boost::python::no_init)
+  class_<WorldManager, boost::shared_ptr<WorldManager> >("WorldManager", boost::python::no_init)
     .def("update", &WorldManager::update);
 }
 
 BOOST_PYTHON_MODULE(settings_manager) {
-  class_<SettingsManager>("SettingsManager", boost::python::no_init)
+  class_<SettingsManager, boost::shared_ptr<SettingsManager> >("SettingsManager", boost::python::no_init)
     .def("get_value", &SettingsManager::getScriptManager)
     .def("set_value", &SettingsManager::getSettingsManager);
 }
 
 BOOST_PYTHON_MODULE(script_manager) {
-  class_<ScriptManager>("ScriptManager", boost::python::no_init)
+  class_<ScriptManager, boost::shared_ptr<ScriptManager> >("ScriptManager", boost::python::no_init)
     .def("import", &ScriptManager::import)
     .def("run", &ScriptManager::run);
 }

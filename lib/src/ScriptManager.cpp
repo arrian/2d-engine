@@ -41,6 +41,11 @@ std::string ScriptManager::getError()
 	return std::string(PyString_AsString(pvalue));
 }
 
+void ScriptManager::update()
+{
+    
+}
+
 
 
 static int numargs=0;

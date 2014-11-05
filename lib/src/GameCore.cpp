@@ -1,7 +1,10 @@
 #include "GameCore.h"
 
 GameCore::GameCore(Core* core)
-	: core(core)
+	: core(core),
+	  worldManager(new WorldManager()),
+	  scriptManager(new ScriptManager()),
+	  settingsManager(new SettingsManager())
 {
 }
 
@@ -13,25 +16,32 @@ void GameCore::update()
 {
 	std::cout << "updating" << std::endl;
 
+	if(scriptManager) scriptManager->update();
+	if(worldManager) worldManager->update();
 }
 
-Core* GameCore::getCore()
+shared_ptr<GameCore> GameCore::getThis()
 {
-	return core;
+	return shared_from_this();
 }
 
-WorldManager* GameCore::getWorldManager()
+shared_ptr<Core> GameCore::getCore()
 {
-	return &worldManager;
+	return shared_ptr<Core>(core);
 }
 
-ScriptManager* GameCore::getScriptManager()
+shared_ptr<WorldManager> GameCore::getWorldManager()
 {
-	return &scriptManager
+	return shared_ptr<WorldManager>(worldManager);
 }
 
-SettingsManager* GameCore::getSettingsManager()
+shared_ptr<ScriptManager> GameCore::getScriptManager()
 {
-	return &settingsManager;
+	return shared_ptr<ScriptManager>(scriptManager);
+}
+
+shared_ptr<SettingsManager> GameCore::getSettingsManager()
+{
+	return shared_ptr<SettingsManager>(settingsManager);
 }
 

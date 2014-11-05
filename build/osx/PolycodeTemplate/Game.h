@@ -1,10 +1,13 @@
 #pragma once
 
-#import "PolycodeView.h"
-#include "Polycode.h"
-#include "GameCore.h"
+#include <memory>
+using namespace std;
 
+#include "Polycode.h"
+#import "PolycodeView.h"
 using namespace Polycode;
+
+#include "GameCore.h"
 
 class Game {
 public:
@@ -12,8 +15,8 @@ public:
     ~Game();
     
     bool Update();
-    
+
 private:
-    Core* core;
-    GameCore* gameCore;
+    shared_ptr<Core> core;
+    shared_ptr<GameCore> gameCore;
 };

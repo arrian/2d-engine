@@ -12,6 +12,7 @@ public:
 
 	std::string getError();
 	
+	void update();
 
 private:
 

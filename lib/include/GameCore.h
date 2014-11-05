@@ -5,6 +5,9 @@
 #include <map>
 #include <string>
 
+#include <memory>
+using namespace std;
+
 #include <Polycode.h>
 using namespace Polycode;
 
@@ -12,26 +15,28 @@ using namespace Polycode;
 #include "ScriptManager.h"
 #include "SettingsManager.h"
 
-class GameCore
+class GameCore : enable_shared_from_this<GameCore>
 {
 public:
-  GameCore(Core* core);
+  GameCore(shared_ptr<Core> core);
   ~GameCore(void);
 
   void update();
 
-  Core* getCore();
-  void setCore(Core* core);
+  shared_ptr<GameCore> getThis();
 
-  WorldManager* getWorldManager();
-  ScriptManager* getScriptManager();
-  SettingsManager* getSettingsManager();
+  shared_ptr<Core> getCore();
+  void setCore(shared_ptr<Core> core);
+
+  shared_ptr<WorldManager> getWorldManager();
+  shared_ptr<ScriptManager> getScriptManager();
+  shared_ptr<SettingsManager> getSettingsManager();
 
 private:
-  Core* core;
+  shared_ptr<Core> core;
 
-  WorldManager worldManager;
-  ScriptManager scriptManager;
-  SettingsManager settingsManager;
+  shared_ptr<WorldManager> worldManager;
+  shared_ptr<ScriptManager> scriptManager;
+  shared_ptr<SettingsManager> settingsManager;
 
 };
