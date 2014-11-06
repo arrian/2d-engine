@@ -77,7 +77,7 @@ BOOST_PYTHON_MODULE(script_manager) {
 }
 
 BOOST_PYTHON_MODULE(game_core) {
-  class_<GameCore>("GameCore", boost::python::no_init)
+  class_<GameCore, boost::shared_ptr<GameCore> >("GameCore", boost::python::no_init)
   	.def("get_core", &GameCore::getCore)
     .def("get_script_manager", &GameCore::getScriptManager)
     .def("get_settings_manager", &GameCore::getSettingsManager)
