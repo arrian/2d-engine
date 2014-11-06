@@ -15,7 +15,7 @@ using namespace Polycode;
 #include "ScriptManager.h"
 #include "SettingsManager.h"
 
-class GameCore : enable_shared_from_this<GameCore>
+class GameCore : public enable_shared_from_this<GameCore>
 {
 public:
   GameCore(shared_ptr<Core> core);

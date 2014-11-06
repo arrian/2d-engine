@@ -537,6 +537,8 @@
 					/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenAL.framework/Headers,
 					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenAL.framework/Headers,
 					"\"$(SRCROOT)/../../lib/include\"",
+					"\"$(SRCROOT)/../../deps/polycode/Modules/Include\"",
+					"\"$(SRCROOT)/../../deps/polycode/Modules/Dependencies/Include\"",
 				);
 				INFOPLIST_FILE = "PolycodeTemplate/Game-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -568,6 +570,8 @@
 					/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenAL.framework/Headers,
 					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenAL.framework/Headers,
 					"\"$(SRCROOT)/../../lib/include\"",
+					"\"$(SRCROOT)/../../deps/polycode/Modules/Include\"",
+					"\"$(SRCROOT)/../../deps/polycode/Modules/Dependencies/Include\"",
 				);
 				INFOPLIST_FILE = "PolycodeTemplate/Game-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
