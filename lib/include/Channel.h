@@ -2,8 +2,19 @@
 
 #include "Util.h"
 
+class Channel
+{
+public:
+	virtual ~Channel() {}
+
+	virtual string in() = 0;// get a string of input
+	virtual void out(string value) = 0;// handle a string of output
+};
+
 class ChannelStandard : public Channel
 {
+public:
+
 	virtual string in()
 	{
 		string input;
@@ -15,12 +26,4 @@ class ChannelStandard : public Channel
 	{
 		cout << value << endl;
 	}
-};
-
-class Channel
-{
-	virtual ~Channel() {}
-
-	virtual string in() = 0;// get a string of input
-	virtual void out(string value) = 0;// handle a string of output
 };

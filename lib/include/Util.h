@@ -24,3 +24,5 @@ using namespace Polycode;
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/python.hpp>
 using namespace boost;
+
+#include "Exception.h"

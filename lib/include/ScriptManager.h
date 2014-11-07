@@ -18,7 +18,7 @@ public:
 
 	string import(string import);
 	string execute(string code);
-	string executeFile(string code);
+	string executeFile(string filename);
 
 	string getError();
 	
