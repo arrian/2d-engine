@@ -7,6 +7,7 @@
 
 class Interpreter
 {
+public:
 	shared_ptr<Channel> channel;
 	shared_ptr<ScriptManager> scriptManager;
 

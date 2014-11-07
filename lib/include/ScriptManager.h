@@ -5,7 +5,7 @@
 class Channel;
 class Interpreter;
 
-class ScriptManager
+class ScriptManager : public enable_shared_from_this<ScriptManager>
 {
 public:
 	shared_ptr<Channel> output;
@@ -13,8 +13,6 @@ public:
 
 	ScriptManager();
 	~ScriptManager();
-
-	void setOutput(shared_ptr<Channel> output);
 
 	string import(string import);
 	string execute(string code);
@@ -24,6 +22,7 @@ public:
 	
 	void update();
 
+	void setOutput(shared_ptr<Channel> output);
 	shared_ptr<Interpreter> createInterpreter(shared_ptr<Channel> channel);
 
 private:

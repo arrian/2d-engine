@@ -49,7 +49,15 @@ void ScriptManager::update()
     
 }
 
+void ScriptManager::setOutput(shared_ptr<Channel> output)
+{
+    this->output = output;
+}
 
+shared_ptr<Interpreter> ScriptManager::createInterpreter(shared_ptr<Channel> channel)
+{
+    return shared_ptr<Interpreter>(new Interpreter(shared_from_this(), channel));
+}
 
 // static int numargs=0;
 

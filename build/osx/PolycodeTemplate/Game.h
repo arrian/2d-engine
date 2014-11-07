@@ -1,12 +1,10 @@
 #pragma once
 
-#include <memory>
-using std::shared_ptr;
-
 #include <Polycode.h>
 #import "PolycodeView.h"
 using namespace Polycode;
 
+#undef check
 #include "GameCore.h"
 
 class Game {

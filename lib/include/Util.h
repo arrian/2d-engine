@@ -21,6 +21,7 @@ using std::endl;
 using namespace Polycode;
 
 #include <boost/shared_ptr.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/python.hpp>
 using namespace boost;

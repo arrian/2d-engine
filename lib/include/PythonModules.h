@@ -43,7 +43,7 @@ BOOST_PYTHON_MODULE(core_services) {
 }
 
 BOOST_PYTHON_MODULE(core) {
-  python::class_<Core, noncopyable>("Core", python::no_init)
+  python::class_<Core, shared_ptr<Core>, noncopyable>("Core", python::no_init)
   	.def("enable_mouse", &Core::enableMouse)
   	.def("capture_mouse", &Core::captureMouse)
   	.def("set_cursor", &Core::setCursor)
@@ -100,10 +100,10 @@ BOOST_PYTHON_MODULE(script_manager) {
 
 BOOST_PYTHON_MODULE(game_core) {
   python::class_<GameCore, shared_ptr<GameCore>, noncopyable>("GameCore", python::no_init)
-  	.def("get_core", &GameCore::getCore, python::return_value_policy<python::reference_existing_object>())
-    .def("get_script_manager", &GameCore::getScriptManager, python::return_value_policy<python::reference_existing_object>())
-    .def("get_settings_manager", &GameCore::getSettingsManager, python::return_value_policy<python::reference_existing_object>())
-    .def("get_world_manager", &GameCore::getWorldManager, python::return_value_policy<python::reference_existing_object>());
+  	.def("get_core", &GameCore::getCore)
+    .def("get_script_manager", &GameCore::getScriptManager)
+    .def("get_settings_manager", &GameCore::getSettingsManager)
+    .def("get_world_manager", &GameCore::getWorldManager);
 }
 
 
