@@ -1,9 +1,9 @@
 #pragma once
 
 #include <memory>
-using namespace std;
+using std::shared_ptr;
 
-#include "Polycode.h"
+#include <Polycode.h>
 #import "PolycodeView.h"
 using namespace Polycode;
 

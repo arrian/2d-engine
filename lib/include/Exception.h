@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-
-using namespace std;
+#include "Util.h"
 
 class Exception
 {

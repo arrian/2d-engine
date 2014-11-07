@@ -1,9 +1,5 @@
 #include "ScriptManager.h"
 
-// #include <Python.h>
-#include <boost/python.hpp>
-using namespace boost;
-
 #include "PythonModules.h"
 
 ScriptManager::ScriptManager()

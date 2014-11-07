@@ -1,10 +1,6 @@
 #pragma once
 
-#include <boost/python.hpp>
-using namespace boost;
-
-#include <Polycode.h>
-using namespace Polycode;
+#include "Util.h"
 
 #include "GameCore.h"
 #include "WorldManager.h"
@@ -14,7 +10,7 @@ using namespace Polycode;
 // Polycode Bindings
 
 BOOST_PYTHON_MODULE(core_services) {
-  class_<CoreServices>("CoreServices", boost::python::no_init)
+  python::class_<CoreServices>("CoreServices", python::no_init)
   	.def("get_renderer", &CoreServices::getRenderer)
   	.def("install_module", &CoreServices::installModule)
   	.def("get_material_manager", &CoreServices::getMaterialManager)
@@ -30,25 +26,25 @@ BOOST_PYTHON_MODULE(core_services) {
 }
 
 BOOST_PYTHON_MODULE(core) {
-  class_<Core>("Core", boost::python::no_init)
+  python::class_<Core>("Core", python::no_init)
   	.def("enable_mouse", &Core::enableMouse)
   	.def("capture_mouse", &Core::captureMouse)
   	.def("set_cursor", &Core::setCursor)
   	.def("warp_cursor", &Core::warpCursor)
-  	.def("copy_string_to_clipboard", &Core::copyStringToClipboard)
-  	.def("create_folder", &Core::createFolder)
+    .def("copy_string_to_clipboard", &Core::copyStringToClipboard)
+  	.def("get_clipboard_string", &Core::getClipboardString)
+    .def("create_folder", &Core::createFolder)
   	.def("set_video_mode", &Core::setVideoMode)
   	.def("resize_to", &Core::resizeTo)
   	.def("open_url", &Core::openURL)
-  	.def("get_clipboard_string", &Core::getClipboardString)
   	.def("get_services", &Core::getServices)
   	.def("get_fps", &Core::getFPS)
   	.def("is_fullscreen", &Core::isFullscreen)
-  	.def("get_a_a_level", &Core::getAALevel)
+  	.def("get_aa_level", &Core::getAALevel)
   	.def("get_input", &Core::getInput)
   	.def("get_x_res", &Core::getXRes)
   	.def("get_y_res", &Core::getYRes)
-  	.def("get_video_modes", &Core::getVideoModes)
+  	.def("get_screen_info", &Core::getScreenInfo)
   	.def("open_folder_picker", &Core::openFolderPicker)
   	.def("get_elapsed", &Core::getElapsed)
   	.def("get_ticks", &Core::getTicks)
@@ -60,24 +56,28 @@ BOOST_PYTHON_MODULE(core) {
 // Game Bindings
 
 BOOST_PYTHON_MODULE(world_manager) {
-  class_<WorldManager, boost::shared_ptr<WorldManager> >("WorldManager", boost::python::no_init)
+  python::class_<WorldManager, shared_ptr<WorldManager> >("WorldManager", python::no_init)
     .def("update", &WorldManager::update);
 }
 
 BOOST_PYTHON_MODULE(settings_manager) {
-  class_<SettingsManager, boost::shared_ptr<SettingsManager> >("SettingsManager", boost::python::no_init)
-    .def("get_value", &SettingsManager::getScriptManager)
-    .def("set_value", &SettingsManager::getSettingsManager);
+  python::class_<SettingsManager, shared_ptr<SettingsManager> >("SettingsManager", python::no_init)
+    .def("get_value", &SettingsManager::getValue)
+    .def("set_value", &SettingsManager::setValue);
 }
 
 BOOST_PYTHON_MODULE(script_manager) {
-  class_<ScriptManager, boost::shared_ptr<ScriptManager> >("ScriptManager", boost::python::no_init)
+  python::class_<ScriptManager, shared_ptr<ScriptManager> >("ScriptManager", python::no_init)
+    .def("set_output", &ScriptManager::setOutput)
     .def("import", &ScriptManager::import)
-    .def("run", &ScriptManager::run);
+    .def("execute", &ScriptManager::execute)
+    .def("execute_file", &ScriptManager::executeFile)
+    .def("get_error", &ScriptManager::getError)
+    .def("create_interpreter", &ScriptManager::createInterpreter);
 }
 
 BOOST_PYTHON_MODULE(game_core) {
-  class_<GameCore, boost::shared_ptr<GameCore> >("GameCore", boost::python::no_init)
+  python::class_<GameCore, shared_ptr<GameCore> >("GameCore", python::no_init)
   	.def("get_core", &GameCore::getCore)
     .def("get_script_manager", &GameCore::getScriptManager)
     .def("get_settings_manager", &GameCore::getSettingsManager)

@@ -1,6 +1,6 @@
 #include "GameCore.h"
 
-GameCore::GameCore(Core* core)
+GameCore::GameCore(shared_ptr<Core> core)
 	: core(core),
 	  worldManager(new WorldManager()),
 	  scriptManager(new ScriptManager()),
@@ -28,6 +28,11 @@ shared_ptr<GameCore> GameCore::getThis()
 shared_ptr<Core> GameCore::getCore()
 {
 	return shared_ptr<Core>(core);
+}
+
+void GameCore::setCore(shared_ptr<Core> core)
+{
+	this->core = core;
 }
 
 shared_ptr<WorldManager> GameCore::getWorldManager()

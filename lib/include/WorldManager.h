@@ -1,11 +1,6 @@
 #pragma once
 
-#include <memory>
-using namespace std;
-
-#include <Polycode.h>
-#include "Polycode2DPhysics.h"
-using namespace Polycode;
+#include "Util.h"
 
 class WorldManager
 {

@@ -3,24 +3,6 @@
 #include <vector>
 #include <iostream>
 
-#include "Player.h"
-#include "Ground.h"
-#include "Climbable.h"
-#include "Interactive.h"
-#include "Dynamic.h"
-#include "Static.h"
-#include "Sky.h"
-#include "Settings.h"
-
-#include <Box2D/Box2D.h>
-#include "PhysicsDebugDraw.h"
-#include "PhysicsContactListener.h"
-#include "PhysicsRayCast.h"
-
-#include "allegro5/allegro.h"
-#include "allegro5/allegro_image.h"
-
-
 class CellLoader;
 
 class Cell

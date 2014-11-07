@@ -1,15 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <iostream>
-#include <map>
-#include <string>
-
-#include <memory>
-using namespace std;
-
-#include <Polycode.h>
-using namespace Polycode;
+#include "Util.h"
 
 #include "WorldManager.h"
 #include "ScriptManager.h"
