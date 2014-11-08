@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PolycodeTemplate.xcodeproj">
+      location = "self:Game.xcodeproj">
    </FileRef>
 </Workspace>

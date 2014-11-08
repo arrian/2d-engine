@@ -1,36 +1,40 @@
 #include "ScriptManager.h"
 
 #include "PythonModules.h"
+#include "ScriptEvent.h"
 
 ScriptManager::ScriptManager()
 {
-	Py_Initialize();
-	PyRun_SimpleString("import sys");
-	PyRun_SimpleString("sys.path.insert(0, '')");
+    Py_Initialize();
+    main = python::import("__main__");
+    global = main.attr("__dict__");
+
+	// Py_Initialize();
+	// PyRun_SimpleString("import sys");
+	// PyRun_SimpleString("sys.path.insert(0, '')");
 }
 
 ScriptManager::~ScriptManager()
 {
-	Py_Finalize();
+	// Py_Finalize();
 }
 
-string ScriptManager::import(string import)
+python::object ScriptManager::import(string import)
 {
 	python::object module = python::import(python::str(import));
-    // TODO: do something with the module
-    return "success";// TODO: return printable result
+    return module;
 }
 
-string ScriptManager::execute(string code)
+python::object ScriptManager::execute(string code)
 {
-    python::object result = python::exec(python::str(code));
-    return "success";// TODO: return printable result
+    python::object result = python::exec(python::str(code), global, global);
+    return result;
 }
 
-string ScriptManager::executeFile(string filename)
+python::object ScriptManager::executeFile(string filename)
 {
-    python::object result = python::exec_file(python::str(filename));
-    return "success";// TODO: return printable result
+    python::object result = python::exec_file(python::str(filename), global, global);
+    return result;
 }
 
 string ScriptManager::getError()
@@ -58,6 +62,20 @@ shared_ptr<Interpreter> ScriptManager::createInterpreter(shared_ptr<Channel> cha
 {
     return shared_ptr<Interpreter>(new Interpreter(shared_from_this(), channel));
 }
+
+shared_ptr<ScriptEvent> ScriptManager::scheduleScript(string code, int msecsInterval)
+{
+    shared_ptr<ScriptEvent> scheduledEvent(new ScriptEvent(this, code, msecsInterval));
+    scheduled.push_back(scheduledEvent);
+
+    return scheduledEvent;
+}
+
+void ScriptManager::cancelScript(shared_ptr<ScriptEvent> event)
+{
+    scheduled.erase(std::remove(scheduled.begin(), scheduled.end(), event), scheduled.end());
+}
+
 
 // static int numargs=0;
 

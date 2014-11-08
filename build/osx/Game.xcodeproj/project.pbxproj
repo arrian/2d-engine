@@ -94,7 +94,7 @@
 		6D2800BF13760D3E00BD8D0D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6D2800C013760D3E00BD8D0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D2800C513760D3E00BD8D0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6D2800C713760D3E00BD8D0D /* PolycodeTemplate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PolycodeTemplate-Prefix.pch"; sourceTree = "<group>"; };
+		6D2800C713760D3E00BD8D0D /* Game-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game-Prefix.pch"; sourceTree = "<group>"; };
 		6D2800C813760D3E00BD8D0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6D2800CB13760D3E00BD8D0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		6D2800CD13760D3E00BD8D0D /* PolycodeTemplateAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolycodeTemplateAppDelegate.h; sourceTree = "<group>"; };
@@ -117,34 +117,6 @@
 		6DE4C7F313E24B92009A9862 /* libpng15.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng15.a; path = ../../deps/polycode/Core/Dependencies/lib/libpng15.a; sourceTree = "<group>"; };
 		6DE4C7F413E24B92009A9862 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../deps/polycode/Core/Dependencies/lib/libz.a; sourceTree = "<group>"; };
 		787599331A0C9A1000F8768A /* libpython3.4m.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.4m.a; path = "../../../../../../usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/lib/python3.4/config-3.4m/libpython3.4m.a"; sourceTree = "<group>"; };
-		787599351A0C9BD000F8768A /* libboost_atomic-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_atomic-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_atomic-mt.a"; sourceTree = "<group>"; };
-		787599361A0C9BD100F8768A /* libboost_chrono-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_chrono-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_chrono-mt.a"; sourceTree = "<group>"; };
-		787599371A0C9BD100F8768A /* libboost_context-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_context-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_context-mt.a"; sourceTree = "<group>"; };
-		787599381A0C9BD100F8768A /* libboost_coroutine-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_coroutine-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_coroutine-mt.a"; sourceTree = "<group>"; };
-		787599391A0C9BD100F8768A /* libboost_date_time-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_date_time-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_date_time-mt.a"; sourceTree = "<group>"; };
-		7875993A1A0C9BD100F8768A /* libboost_exception-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_exception-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_exception-mt.a"; sourceTree = "<group>"; };
-		7875993B1A0C9BD100F8768A /* libboost_filesystem-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_filesystem-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_filesystem-mt.a"; sourceTree = "<group>"; };
-		7875993C1A0C9BD100F8768A /* libboost_graph-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_graph-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_graph-mt.a"; sourceTree = "<group>"; };
-		7875993D1A0C9BD100F8768A /* libboost_iostreams-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_iostreams-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_iostreams-mt.a"; sourceTree = "<group>"; };
-		7875993E1A0C9BD100F8768A /* libboost_locale-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_locale-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_locale-mt.a"; sourceTree = "<group>"; };
-		7875993F1A0C9BD100F8768A /* libboost_log_setup-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_log_setup-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_log_setup-mt.a"; sourceTree = "<group>"; };
-		787599401A0C9BD100F8768A /* libboost_log-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_log-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_log-mt.a"; sourceTree = "<group>"; };
-		787599411A0C9BD100F8768A /* libboost_math_c99-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_c99-mt.a"; sourceTree = "<group>"; };
-		787599421A0C9BD100F8768A /* libboost_math_c99f-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99f-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_c99f-mt.a"; sourceTree = "<group>"; };
-		787599431A0C9BD100F8768A /* libboost_math_c99l-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99l-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_c99l-mt.a"; sourceTree = "<group>"; };
-		787599441A0C9BD100F8768A /* libboost_math_tr1-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_tr1-mt.a"; sourceTree = "<group>"; };
-		787599451A0C9BD100F8768A /* libboost_math_tr1f-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1f-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_tr1f-mt.a"; sourceTree = "<group>"; };
-		787599461A0C9BD100F8768A /* libboost_math_tr1l-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1l-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_math_tr1l-mt.a"; sourceTree = "<group>"; };
-		787599471A0C9BD100F8768A /* libboost_prg_exec_monitor-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_prg_exec_monitor-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_prg_exec_monitor-mt.a"; sourceTree = "<group>"; };
-		787599481A0C9BD100F8768A /* libboost_program_options-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_program_options-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_program_options-mt.a"; sourceTree = "<group>"; };
-		787599491A0C9BD100F8768A /* libboost_random-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_random-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_random-mt.a"; sourceTree = "<group>"; };
-		7875994A1A0C9BD100F8768A /* libboost_regex-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_regex-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_regex-mt.a"; sourceTree = "<group>"; };
-		7875994B1A0C9BD100F8768A /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_serialization-mt.a"; sourceTree = "<group>"; };
-		7875994C1A0C9BD100F8768A /* libboost_signals-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_signals-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_signals-mt.a"; sourceTree = "<group>"; };
-		7875994D1A0C9BD100F8768A /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_system-mt.a"; sourceTree = "<group>"; };
-		7875994E1A0C9BD100F8768A /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_thread-mt.a"; sourceTree = "<group>"; };
-		7875994F1A0C9BD100F8768A /* libboost_timer-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_timer-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_timer-mt.a"; sourceTree = "<group>"; };
-		787599501A0C9BD100F8768A /* libboost_wave-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_wave-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_wave-mt.a"; sourceTree = "<group>"; };
 		7875996D1A0CA24200F8768A /* libboost_python-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_python-mt.a"; path = "../../../../../../usr/local/Cellar/boost-python/1.56.0/lib/libboost_python-mt.a"; sourceTree = "<group>"; };
 		7875996F1A0CA7D800F8768A /* libPolycode2DPhysics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycode2DPhysics.a; path = ../../deps/polycode/Modules/lib/libPolycode2DPhysics.a; sourceTree = "<group>"; };
 		787599701A0CA7D800F8768A /* libPolycodeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycodeUI.a; path = ../../deps/polycode/Modules/lib/libPolycodeUI.a; sourceTree = "<group>"; };
@@ -158,6 +130,7 @@
 		7875997A1A0CA7FE00F8768A /* libLinearMath.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath.a; path = ../../deps/polycode/Modules/Dependencies/lib/libLinearMath.a; sourceTree = "<group>"; };
 		7875997B1A0CA7FE00F8768A /* libMiniCL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMiniCL.a; path = ../../deps/polycode/Modules/Dependencies/lib/libMiniCL.a; sourceTree = "<group>"; };
 		787599851A0CAB2100F8768A /* libboost_python3-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_python3-mt.a"; path = "../../../../../../usr/local/Cellar/boost-python/1.56.0/lib/libboost_python3-mt.a"; sourceTree = "<group>"; };
+		787599B21A0CB68300F8768A /* Game copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Game copy-Info.plist"; path = "/Users/arrian/Dev/2d-engine/build/osx/Game copy-Info.plist"; sourceTree = "<absolute>"; };
 		78DF5ABA1A05DA0F00E6AE61 /* Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DF5AD81A05DA1100E6AE61 /* Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Editor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DF5ADF1A05DBCA00E6AE61 /* Game-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Game-Info.plist"; sourceTree = "<group>"; };
@@ -249,6 +222,7 @@
 				6D2800C113760D3E00BD8D0D /* Game */,
 				6D2800BA13760D3E00BD8D0D /* Frameworks */,
 				6D2800B813760D3E00BD8D0D /* Products */,
+				787599B21A0CB68300F8768A /* Game copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,34 +252,6 @@
 				7875996F1A0CA7D800F8768A /* libPolycode2DPhysics.a */,
 				787599701A0CA7D800F8768A /* libPolycodeUI.a */,
 				7875996D1A0CA24200F8768A /* libboost_python-mt.a */,
-				787599351A0C9BD000F8768A /* libboost_atomic-mt.a */,
-				787599361A0C9BD100F8768A /* libboost_chrono-mt.a */,
-				787599371A0C9BD100F8768A /* libboost_context-mt.a */,
-				787599381A0C9BD100F8768A /* libboost_coroutine-mt.a */,
-				787599391A0C9BD100F8768A /* libboost_date_time-mt.a */,
-				7875993A1A0C9BD100F8768A /* libboost_exception-mt.a */,
-				7875993B1A0C9BD100F8768A /* libboost_filesystem-mt.a */,
-				7875993C1A0C9BD100F8768A /* libboost_graph-mt.a */,
-				7875993D1A0C9BD100F8768A /* libboost_iostreams-mt.a */,
-				7875993E1A0C9BD100F8768A /* libboost_locale-mt.a */,
-				7875993F1A0C9BD100F8768A /* libboost_log_setup-mt.a */,
-				787599401A0C9BD100F8768A /* libboost_log-mt.a */,
-				787599411A0C9BD100F8768A /* libboost_math_c99-mt.a */,
-				787599421A0C9BD100F8768A /* libboost_math_c99f-mt.a */,
-				787599431A0C9BD100F8768A /* libboost_math_c99l-mt.a */,
-				787599441A0C9BD100F8768A /* libboost_math_tr1-mt.a */,
-				787599451A0C9BD100F8768A /* libboost_math_tr1f-mt.a */,
-				787599461A0C9BD100F8768A /* libboost_math_tr1l-mt.a */,
-				787599471A0C9BD100F8768A /* libboost_prg_exec_monitor-mt.a */,
-				787599481A0C9BD100F8768A /* libboost_program_options-mt.a */,
-				787599491A0C9BD100F8768A /* libboost_random-mt.a */,
-				7875994A1A0C9BD100F8768A /* libboost_regex-mt.a */,
-				7875994B1A0C9BD100F8768A /* libboost_serialization-mt.a */,
-				7875994C1A0C9BD100F8768A /* libboost_signals-mt.a */,
-				7875994D1A0C9BD100F8768A /* libboost_system-mt.a */,
-				7875994E1A0C9BD100F8768A /* libboost_thread-mt.a */,
-				7875994F1A0C9BD100F8768A /* libboost_timer-mt.a */,
-				787599501A0C9BD100F8768A /* libboost_wave-mt.a */,
 				787599331A0C9A1000F8768A /* libpython3.4m.a */,
 				78DF5AE61A06446500E6AE61 /* libGame.a */,
 				6DE4C7EE13E24B92009A9862 /* libfreetype.a */,
@@ -358,7 +304,7 @@
 				6D2800CE13760D3E00BD8D0D /* PolycodeTemplateAppDelegate.mm */,
 				6D2800D013760D3E00BD8D0D /* MainMenu.xib */,
 				6D2800C413760D3E00BD8D0D /* InfoPlist.strings */,
-				6D2800C713760D3E00BD8D0D /* PolycodeTemplate-Prefix.pch */,
+				6D2800C713760D3E00BD8D0D /* Game-Prefix.pch */,
 				6D2800C813760D3E00BD8D0D /* main.m */,
 				6D2800CA13760D3E00BD8D0D /* Credits.rtf */,
 			);
@@ -460,7 +406,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Tomatogon;
 			};
-			buildConfigurationList = 6D2800B113760D3E00BD8D0D /* Build configuration list for PBXProject "PolycodeTemplate" */;
+			buildConfigurationList = 6D2800B113760D3E00BD8D0D /* Build configuration list for PBXProject "Game" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -640,7 +586,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PolycodeTemplate/PolycodeTemplate-Prefix.pch";
+				GCC_PREFIX_HEADER = "PolycodeTemplate/Game-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../deps/polycode/Core/Include\"",
 					"\"$(SRCROOT)/../../deps/polycode/Core/Dependencies/Include\"",
@@ -680,7 +626,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PolycodeTemplate/PolycodeTemplate-Prefix.pch";
+				GCC_PREFIX_HEADER = "PolycodeTemplate/Game-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../deps/polycode/Core/Include\"",
 					"\"$(SRCROOT)/../../deps/polycode/Core/Dependencies/Include\"",
@@ -833,7 +779,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6D2800B113760D3E00BD8D0D /* Build configuration list for PBXProject "PolycodeTemplate" */ = {
+		6D2800B113760D3E00BD8D0D /* Build configuration list for PBXProject "Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D2800D313760D3E00BD8D0D /* Debug */,

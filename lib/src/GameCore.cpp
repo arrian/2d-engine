@@ -6,6 +6,19 @@ GameCore::GameCore(shared_ptr<Core> core)
 	  scriptManager(new ScriptManager()),
 	  settingsManager(new SettingsManager())
 {
+	try
+	{
+		python::scope().attr("SCRIPT_MANAGER") = getScriptManager();
+		cout << "set script manager" << endl;
+		scriptManager->execute("print(','.join(['test', 'blah', 'more']))");//"print(str(4*3))");//test python
+		scriptManager->execute("import script_manager\nSCRIPT_MANAGER.execute('print('hello!')')");
+		cout << "finished executing" << endl;
+		//import sys\nsys.path.insert(0, '')\n
+	}
+	catch(python::error_already_set &)
+	{
+		cout << scriptManager->getError() << endl;
+	}
 }
 
 GameCore::~GameCore(void)
@@ -14,7 +27,7 @@ GameCore::~GameCore(void)
 
 void GameCore::update()
 {
-	std::cout << "updating" << std::endl;
+	// std::cout << "updating" << std::endl;
 
 	if(scriptManager) scriptManager->update();
 	if(worldManager) worldManager->update();

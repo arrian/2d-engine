@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "78DF5A9E1A05DA0F00E6AE61"
-               BuildableName = "Server.app"
-               BlueprintName = "Server"
-               ReferencedContainer = "container:PolycodeTemplate.xcodeproj">
+               BlueprintIdentifier = "78DF5ABC1A05DA1100E6AE61"
+               BuildableName = "Editor.app"
+               BlueprintName = "Editor"
+               ReferencedContainer = "container:Game.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "78DF5A9E1A05DA0F00E6AE61"
-            BuildableName = "Server.app"
-            BlueprintName = "Server"
-            ReferencedContainer = "container:PolycodeTemplate.xcodeproj">
+            BlueprintIdentifier = "78DF5ABC1A05DA1100E6AE61"
+            BuildableName = "Editor.app"
+            BlueprintName = "Editor"
+            ReferencedContainer = "container:Game.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "78DF5A9E1A05DA0F00E6AE61"
-            BuildableName = "Server.app"
-            BlueprintName = "Server"
-            ReferencedContainer = "container:PolycodeTemplate.xcodeproj">
+            BlueprintIdentifier = "78DF5ABC1A05DA1100E6AE61"
+            BuildableName = "Editor.app"
+            BlueprintName = "Editor"
+            ReferencedContainer = "container:Game.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "78DF5A9E1A05DA0F00E6AE61"
-            BuildableName = "Server.app"
-            BlueprintName = "Server"
-            ReferencedContainer = "container:PolycodeTemplate.xcodeproj">
+            BlueprintIdentifier = "78DF5ABC1A05DA1100E6AE61"
+            BuildableName = "Editor.app"
+            BlueprintName = "Editor"
+            ReferencedContainer = "container:Game.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

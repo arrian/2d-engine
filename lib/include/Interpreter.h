@@ -26,6 +26,6 @@ public:
 
 	void evaluate()
 	{
-		channel->out(scriptManager->execute(channel->in()));
+		//channel->out(scriptManager->execute(channel->in()));
 	}
 };

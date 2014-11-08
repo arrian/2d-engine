@@ -89,13 +89,15 @@ BOOST_PYTHON_MODULE(settings_manager) {
 }
 
 BOOST_PYTHON_MODULE(script_manager) {
-  python::class_<ScriptManager, shared_ptr<ScriptManager>, noncopyable>("ScriptManager", python::no_init)
+  python::class_<ScriptManager, shared_ptr<ScriptManager> >("ScriptManager")
     .def("set_output", &ScriptManager::setOutput)
     .def("import", &ScriptManager::import)
     .def("execute", &ScriptManager::execute)
     .def("execute_file", &ScriptManager::executeFile)
     .def("get_error", &ScriptManager::getError)
     .def("create_interpreter", &ScriptManager::createInterpreter);
+
+  python::register_ptr_to_python< shared_ptr<ScriptManager> >();
 }
 
 BOOST_PYTHON_MODULE(game_core) {

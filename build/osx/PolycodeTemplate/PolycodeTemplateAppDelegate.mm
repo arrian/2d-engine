@@ -46,7 +46,7 @@ THE SOFTWARE.
 
 - (void)animationTimer:(NSTimer *)timer
 {
-	if(!game->Update()) {
+	if(!game->update()) {
 		[[NSApplication sharedApplication] stop:self];
 	}
 }

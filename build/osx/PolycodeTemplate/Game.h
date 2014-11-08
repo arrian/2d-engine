@@ -7,12 +7,14 @@ using namespace Polycode;
 #undef check
 #include "GameCore.h"
 
-class Game {
+class Game : public EventHandler
+{
 public:
     Game(PolycodeView *view);
     ~Game();
     
-    bool Update();
+    bool update();
+    void handleEvent(Event* event);
 
 private:
     shared_ptr<Core> core;
