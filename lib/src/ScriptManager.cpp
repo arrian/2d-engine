@@ -39,13 +39,16 @@ python::object ScriptManager::executeFile(string filename)
 
 string ScriptManager::getError()
 {
-	PyObject *ptype, *pvalue, *ptraceback;
-	PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+	// PyObject *ptype, *pvalue, *ptraceback;
+	// PyErr_Fetch(&ptype, &pvalue, &ptraceback);
 
-    string error;
-    if(pvalue != NULL) error = python::extract<string>(pvalue);
+ //    string error;
+ //    if(pvalue != NULL) error = python::extract<string>(pvalue);
 
-    return error;
+ //    return error;
+    PyErr_Print();
+    PyErr_Clear();
+    return "failed";
 }
 
 void ScriptManager::update()

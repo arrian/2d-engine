@@ -12,8 +12,8 @@ public:
 	shared_ptr<ScriptManager> scriptManager;
 
 	Interpreter(shared_ptr<ScriptManager> scriptManager, shared_ptr<Channel> channel)
-		: scriptManager(scriptManager),
-		  channel(channel)
+		: channel(channel),
+		  scriptManager(scriptManager)
 	{
 		if(!scriptManager) throw Exception("Interpreter requires a ScriptManager.");
 		if(!channel) throw Exception("Interpreter requires a Channel.");

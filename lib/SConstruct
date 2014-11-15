@@ -1,14 +1,29 @@
-######################################### Static Lib
+include_paths = [
+	'.',
+	'include',
+	'../../include',
+	'/Users/arrian/Dev/polycode-dev/Core/Contents/Include',
+	'/Users/arrian/Dev/polycode-dev/Modules/Contents/2DPhysics/Include',
+	'/Users/arrian/Dev/polycode-dev/Modules/Contents/UI/Include',
+	'/Users/arrian/Dev/polycode-dev/Dependencies/freetype/src/freetype/include',
+	'/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m',
+	'/usr/local/Cellar/boost/1.56.0/include'
+	]
 
-env = Environment(CPPPATH = ['.'],
-	LIBPATH = [
+lib_paths = [
+	'.',
+	'/Users/arrian/Dev/2d-engine/deps/polycode/Modules/lib',
+	'/Users/arrian/Dev/2d-engine/deps/polycode/Modules/Dependencies/lib',
+	'/usr/local/Cellar/boost/1.56.0/lib',
+	'/usr/local/Cellar/boost-python/1.56.0/lib',
 	'../deps/polycode/Core/Dependencies/lib',
 	'../deps/polycode/Core/lib',
 	'../deps/polycode/Modules/lib',
 	'../deps/polycode/Modules/Dependencies/lib',
 	'/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/lib/python3.4/config-3.4m'
-	],
-	LIBS = [
+	]
+
+libraries = [
 	'libPolycore',
 	'libPolycode2DPhysics',
 	'libpng15',
@@ -24,26 +39,22 @@ env = Environment(CPPPATH = ['.'],
 	'libPolycodeTUIO',
 	'libPolycodeUI',
 	'libBox2D',
-	'python3.4m'
-	],
-	CXXFLAGS="-std=c++0x")
+	'python3.4m',
+	'libboost_python3-mt',
+	'libMiniCL'
+	]
 
+env = Environment(CPPPATH = include_paths,
+	LIBPATH = lib_paths,
+	CXXFLAGS="-std=c++0x",
+	CPPFLAGS=['-Wall', '-g', '-mmacosx-version-min=10.9'],
+	LINKFLAGS='-framework Python -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -shared',
+	CPPDEFINES='BUILD_BINDINGS',
+	SHLIBPREFIX='')
 
-Repository('include')
+game_lib = env.StaticLibrary(target = 'Game', source = Glob('src/*.cpp'), LIBS=libraries)
 
-Repository('/Users/arrian/Dev/polycode-dev/Core/Contents/Include')
-Repository('/Users/arrian/Dev/polycode-dev/Modules/Contents/2DPhysics/Include')
-Repository('/Users/arrian/Dev/polycode-dev/Modules/Contents/UI/Include')
-Repository('/Users/arrian/Dev/polycode-dev/Dependencies/freetype/src/freetype/include')
+python_bindings = env.SharedLibrary(target='game.so', source=['src/python/PythonGame.cpp'], LIBS=libraries + game_lib)
 
-Repository('/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m')
-
-
-env.Append(CPPFLAGS=['-Wall', '-g', '-mmacosx-version-min=10.9'])
-staticLib = env.StaticLibrary(target = 'Game',
-            source = Glob('src/*.cpp'))
-
-# staticInstall = env.Install('../bin/', staticLib)
-# env.Program('game',
-            # Glob('src/*.cpp'))
+Depends(python_bindings, game_lib)
 

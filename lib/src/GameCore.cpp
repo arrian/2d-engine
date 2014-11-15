@@ -8,15 +8,19 @@ GameCore::GameCore(shared_ptr<Core> core)
 {
 	try
 	{
+		cout << "importing" << endl;
+		scriptManager->import("game");
+		cout << "starting game core script" << endl;
 		python::scope().attr("SCRIPT_MANAGER") = getScriptManager();
 		cout << "set script manager" << endl;
 		scriptManager->execute("print(','.join(['test', 'blah', 'more']))");//"print(str(4*3))");//test python
-		scriptManager->execute("import script_manager\nSCRIPT_MANAGER.execute('print('hello!')')");
+		scriptManager->execute("SCRIPT_MANAGER.execute('print('hello!')')");
 		cout << "finished executing" << endl;
 		//import sys\nsys.path.insert(0, '')\n
 	}
-	catch(python::error_already_set &)
+	catch(...)//python::error_already_set &)
 	{
+		cout << "got error" << endl;
 		cout << scriptManager->getError() << endl;
 	}
 }
