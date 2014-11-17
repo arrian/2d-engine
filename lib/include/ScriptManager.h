@@ -20,6 +20,9 @@ public:
 	python::object execute(string code);
 	python::object executeFile(string filename);
 
+	void setAttr(string name, python::object obj);
+	python::object getAttr(string name);
+
 	shared_ptr<ScriptEvent> scheduleScript(string code, int msecsInterval);
 	void cancelScript(shared_ptr<ScriptEvent> event);
 

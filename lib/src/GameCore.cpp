@@ -1,28 +1,28 @@
 #include "GameCore.h"
 
+shared_ptr<GameCore> GAME_CORE_GLOBAL;
+
+shared_ptr<GameCore> GameCore::getGlobal()
+{
+	cout << "getting game core" << endl;
+	cout << GAME_CORE_GLOBAL << endl;
+	return GAME_CORE_GLOBAL;
+}
+
+void GameCore::setGlobal(shared_ptr<GameCore> gameCore)
+{
+	cout << "setting game core" << endl;
+	cout << gameCore << endl;
+	GAME_CORE_GLOBAL = gameCore;
+	cout << GAME_CORE_GLOBAL << endl;
+}
+
 GameCore::GameCore(shared_ptr<Core> core)
 	: core(core),
 	  worldManager(new WorldManager()),
 	  scriptManager(new ScriptManager()),
 	  settingsManager(new SettingsManager())
 {
-	try
-	{
-		cout << "importing" << endl;
-		scriptManager->import("game");
-		cout << "starting game core script" << endl;
-		python::scope().attr("SCRIPT_MANAGER") = getScriptManager();
-		cout << "set script manager" << endl;
-		scriptManager->execute("print(','.join(['test', 'blah', 'more']))");//"print(str(4*3))");//test python
-		scriptManager->execute("SCRIPT_MANAGER.execute('print('hello!')')");
-		cout << "finished executing" << endl;
-		//import sys\nsys.path.insert(0, '')\n
-	}
-	catch(...)//python::error_already_set &)
-	{
-		cout << "got error" << endl;
-		cout << scriptManager->getError() << endl;
-	}
 }
 
 GameCore::~GameCore(void)

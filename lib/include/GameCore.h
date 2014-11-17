@@ -23,6 +23,9 @@ public:
   shared_ptr<ScriptManager> getScriptManager();
   shared_ptr<SettingsManager> getSettingsManager();
 
+  static shared_ptr<GameCore> getGlobal();//allow embedded scripts to get the exposed game core
+  static void setGlobal(shared_ptr<GameCore> gameCore);//expose a specific game core to embedded scripts
+
 private:
   shared_ptr<Core> core;
 
@@ -31,3 +34,5 @@ private:
   shared_ptr<SettingsManager> settingsManager;
 
 };
+
+extern shared_ptr<GameCore> GAME_CORE_GLOBAL;

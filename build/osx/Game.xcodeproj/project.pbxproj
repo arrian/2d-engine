@@ -41,6 +41,20 @@
 		787599831A0CA7FE00F8768A /* libLinearMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7875997A1A0CA7FE00F8768A /* libLinearMath.a */; };
 		787599841A0CA7FE00F8768A /* libMiniCL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7875997B1A0CA7FE00F8768A /* libMiniCL.a */; };
 		787599861A0CAB2100F8768A /* libboost_python3-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787599851A0CAB2100F8768A /* libboost_python3-mt.a */; };
+		78AF81791A1A2A3A0037E17D /* game.so in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF81781A1A2A3A0037E17D /* game.so */; };
+		78AF82351A1A2A9B0037E17D /* data in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF822B1A1A2A9B0037E17D /* data */; };
+		78AF82361A1A2A9B0037E17D /* fonts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF822C1A1A2A9B0037E17D /* fonts */; };
+		78AF82371A1A2A9B0037E17D /* images in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF822D1A1A2A9B0037E17D /* images */; };
+		78AF82381A1A2A9B0037E17D /* localisation in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF822E1A1A2A9B0037E17D /* localisation */; };
+		78AF82391A1A2A9B0037E17D /* materials in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF822F1A1A2A9B0037E17D /* materials */; };
+		78AF823A1A1A2A9B0037E17D /* menu in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF82301A1A2A9B0037E17D /* menu */; };
+		78AF823B1A1A2A9B0037E17D /* scripts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF82311A1A2A9B0037E17D /* scripts */; };
+		78AF823C1A1A2A9B0037E17D /* shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF82321A1A2A9B0037E17D /* shaders */; };
+		78AF823D1A1A2A9B0037E17D /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF82331A1A2A9B0037E17D /* sounds */; };
+		78AF823E1A1A2A9B0037E17D /* world in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF82341A1A2A9B0037E17D /* world */; };
+		78AF823F1A1A2B6F0037E17D /* game.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AF81781A1A2A3A0037E17D /* game.so */; };
+		78AF82411A1A31080037E17D /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AF82401A1A31080037E17D /* libboost_system-mt.a */; };
+		78AF82431A1A31150037E17D /* libboost_filesystem-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AF82421A1A31150037E17D /* libboost_filesystem-mt.a */; };
 		78DF5AA01A05DA0F00E6AE61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2800C813760D3E00BD8D0D /* main.m */; };
 		78DF5AA11A05DA0F00E6AE61 /* PolycodeTemplateAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D2800CE13760D3E00BD8D0D /* PolycodeTemplateAppDelegate.mm */; };
 		78DF5AA21A05DA0F00E6AE61 /* PolycodeView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D2800F813760E7C00BD8D0D /* PolycodeView.mm */; };
@@ -83,8 +97,39 @@
 		78DF5AD21A05DA1100E6AE61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2800D013760D3E00BD8D0D /* MainMenu.xib */; };
 		78DF5AD31A05DA1100E6AE61 /* default.pak in Resources */ = {isa = PBXBuildFile; fileRef = 6D2800FD13760FC400BD8D0D /* default.pak */; };
 		78DF5AD41A05DA1100E6AE61 /* main_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6D022DE91598EBF30030B45F /* main_icon.icns */; };
-		78DF5AE71A0646EB00E6AE61 /* libGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DF5AE61A06446500E6AE61 /* libGame.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78AF81771A1A2A160037E17D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78AF81791A1A2A3A0037E17D /* game.so in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78AF817A1A1A2A510037E17D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				78AF82351A1A2A9B0037E17D /* data in CopyFiles */,
+				78AF82361A1A2A9B0037E17D /* fonts in CopyFiles */,
+				78AF82371A1A2A9B0037E17D /* images in CopyFiles */,
+				78AF82381A1A2A9B0037E17D /* localisation in CopyFiles */,
+				78AF82391A1A2A9B0037E17D /* materials in CopyFiles */,
+				78AF823A1A1A2A9B0037E17D /* menu in CopyFiles */,
+				78AF823B1A1A2A9B0037E17D /* scripts in CopyFiles */,
+				78AF823C1A1A2A9B0037E17D /* shaders in CopyFiles */,
+				78AF823D1A1A2A9B0037E17D /* sounds in CopyFiles */,
+				78AF823E1A1A2A9B0037E17D /* world in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6D022DE91598EBF30030B45F /* main_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = main_icon.icns; sourceTree = "<group>"; };
@@ -131,6 +176,20 @@
 		7875997B1A0CA7FE00F8768A /* libMiniCL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMiniCL.a; path = ../../deps/polycode/Modules/Dependencies/lib/libMiniCL.a; sourceTree = "<group>"; };
 		787599851A0CAB2100F8768A /* libboost_python3-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_python3-mt.a"; path = "../../../../../../usr/local/Cellar/boost-python/1.56.0/lib/libboost_python3-mt.a"; sourceTree = "<group>"; };
 		787599B21A0CB68300F8768A /* Game copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Game copy-Info.plist"; path = "/Users/arrian/Dev/2d-engine/build/osx/Game copy-Info.plist"; sourceTree = "<absolute>"; };
+		78AF81741A1A1EC30037E17D /* game.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = game.so; path = ../../lib/game.so; sourceTree = "<group>"; };
+		78AF81781A1A2A3A0037E17D /* game.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = game.so; path = ../../lib/game.so; sourceTree = "<group>"; };
+		78AF822B1A1A2A9B0037E17D /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../res/data; sourceTree = "<group>"; };
+		78AF822C1A1A2A9B0037E17D /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../../res/fonts; sourceTree = "<group>"; };
+		78AF822D1A1A2A9B0037E17D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../res/images; sourceTree = "<group>"; };
+		78AF822E1A1A2A9B0037E17D /* localisation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = localisation; path = ../../res/localisation; sourceTree = "<group>"; };
+		78AF822F1A1A2A9B0037E17D /* materials */ = {isa = PBXFileReference; lastKnownFileType = folder; name = materials; path = ../../res/materials; sourceTree = "<group>"; };
+		78AF82301A1A2A9B0037E17D /* menu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = menu; path = ../../res/menu; sourceTree = "<group>"; };
+		78AF82311A1A2A9B0037E17D /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../../res/scripts; sourceTree = "<group>"; };
+		78AF82321A1A2A9B0037E17D /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shaders; path = ../../res/shaders; sourceTree = "<group>"; };
+		78AF82331A1A2A9B0037E17D /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = ../../res/sounds; sourceTree = "<group>"; };
+		78AF82341A1A2A9B0037E17D /* world */ = {isa = PBXFileReference; lastKnownFileType = folder; name = world; path = ../../res/world; sourceTree = "<group>"; };
+		78AF82401A1A31080037E17D /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.56.0/lib/libboost_system-mt.a"; sourceTree = "<group>"; };
+		78AF82421A1A31150037E17D /* libboost_filesystem-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_filesystem-mt.a"; path = "../../../../../../usr/local/Cellar/boost/1.56.0/lib/libboost_filesystem-mt.a"; sourceTree = "<group>"; };
 		78DF5ABA1A05DA0F00E6AE61 /* Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Server.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DF5AD81A05DA1100E6AE61 /* Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Editor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DF5ADF1A05DBCA00E6AE61 /* Game-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Game-Info.plist"; sourceTree = "<group>"; };
@@ -144,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DF5AE71A0646EB00E6AE61 /* libGame.a in Frameworks */,
+				78AF823F1A1A2B6F0037E17D /* game.so in Frameworks */,
 				6D2800F613760DE400BD8D0D /* IOKit.framework in Frameworks */,
 				6D2800F413760DDA00BD8D0D /* OpenAL.framework in Frameworks */,
 				6D2800F213760DD500BD8D0D /* OpenGL.framework in Frameworks */,
@@ -169,6 +228,8 @@
 				6DE4C7FA13E24B92009A9862 /* libpng15.a in Frameworks */,
 				6DE4C7FB13E24B92009A9862 /* libz.a in Frameworks */,
 				787599341A0C9A1000F8768A /* libpython3.4m.a in Frameworks */,
+				78AF82411A1A31080037E17D /* libboost_system-mt.a in Frameworks */,
+				78AF82431A1A31150037E17D /* libboost_filesystem-mt.a in Frameworks */,
 				787599861A0CAB2100F8768A /* libboost_python3-mt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +278,17 @@
 		6D2800AC13760D3E00BD8D0D = {
 			isa = PBXGroup;
 			children = (
+				78AF822B1A1A2A9B0037E17D /* data */,
+				78AF822C1A1A2A9B0037E17D /* fonts */,
+				78AF822D1A1A2A9B0037E17D /* images */,
+				78AF822E1A1A2A9B0037E17D /* localisation */,
+				78AF822F1A1A2A9B0037E17D /* materials */,
+				78AF82301A1A2A9B0037E17D /* menu */,
+				78AF82311A1A2A9B0037E17D /* scripts */,
+				78AF82321A1A2A9B0037E17D /* shaders */,
+				78AF82331A1A2A9B0037E17D /* sounds */,
+				78AF82341A1A2A9B0037E17D /* world */,
+				78AF81781A1A2A3A0037E17D /* game.so */,
 				78DF5ADD1A05DA7C00E6AE61 /* Editor */,
 				78DF5ADB1A05DA5A00E6AE61 /* Server */,
 				6D2800C113760D3E00BD8D0D /* Game */,
@@ -239,6 +311,9 @@
 		6D2800BA13760D3E00BD8D0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78AF82421A1A31150037E17D /* libboost_filesystem-mt.a */,
+				78AF82401A1A31080037E17D /* libboost_system-mt.a */,
+				78AF81741A1A1EC30037E17D /* game.so */,
 				787599851A0CAB2100F8768A /* libboost_python3-mt.a */,
 				787599731A0CA7FE00F8768A /* libBox2D.a */,
 				787599741A0CA7FE00F8768A /* libBulletCollision.a */,
@@ -353,6 +428,8 @@
 				6D2800B313760D3E00BD8D0D /* Sources */,
 				6D2800B413760D3E00BD8D0D /* Frameworks */,
 				6D2800B513760D3E00BD8D0D /* Resources */,
+				78AF81771A1A2A160037E17D /* CopyFiles */,
+				78AF817A1A1A2A510037E17D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -599,6 +676,7 @@
 					/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m,
 				);
 				INFOPLIST_FILE = "PolycodeTemplate/Game-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -609,6 +687,7 @@
 					"/usr/local/Cellar/boost-python/1.56.0/lib",
 					"/Users/arrian/Dev/2d-engine/deps/polycode/Modules/lib",
 					"/Users/arrian/Dev/2d-engine/deps/polycode/Modules/Dependencies/lib",
+					"/Users/arrian/Dev/2d-engine/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -639,6 +718,7 @@
 					/usr/local/Cellar/python3/3.4.1/Frameworks/Python.framework/Versions/3.4/include/python3.4m,
 				);
 				INFOPLIST_FILE = "PolycodeTemplate/Game-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -649,6 +729,7 @@
 					"/usr/local/Cellar/boost-python/1.56.0/lib",
 					"/Users/arrian/Dev/2d-engine/deps/polycode/Modules/lib",
 					"/Users/arrian/Dev/2d-engine/deps/polycode/Modules/Dependencies/lib",
+					"/Users/arrian/Dev/2d-engine/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";

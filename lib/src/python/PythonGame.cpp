@@ -85,6 +85,10 @@ BOOST_PYTHON_MODULE(game) {
     .def("get_core", &GameCore::getCore)
     .def("get_script_manager", &GameCore::getScriptManager)
     .def("get_settings_manager", &GameCore::getSettingsManager)
-    .def("get_world_manager", &GameCore::getWorldManager);
+    .def("get_world_manager", &GameCore::getWorldManager)
+    .def("get_global", &GameCore::getGlobal)
+    .staticmethod("get_global");
+
+  // python::def("get_game_core", &getGameCore, python::return_value_policy<python::reference_existing_object>());
 
 }

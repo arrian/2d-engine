@@ -1,3 +1,5 @@
+target = 'game.so'
+
 include_paths = [
 	'.',
 	'include',
@@ -48,13 +50,17 @@ env = Environment(CPPPATH = include_paths,
 	LIBPATH = lib_paths,
 	CXXFLAGS="-std=c++0x",
 	CPPFLAGS=['-Wall', '-g', '-mmacosx-version-min=10.9'],
-	LINKFLAGS='-framework Python -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -shared',
+	LINKFLAGS='-framework Python -framework Cocoa -framework OpenGL -framework OpenAL -framework IOKit -shared -rdynamic -install_name @executable_path/../Frameworks/' + target,
 	CPPDEFINES='BUILD_BINDINGS',
 	SHLIBPREFIX='')
 
-game_lib = env.StaticLibrary(target = 'Game', source = Glob('src/*.cpp'), LIBS=libraries)
+# game_lib = env.StaticLibrary(target = 'Game', source = Glob('src/*.cpp'), LIBS=libraries)
 
-python_bindings = env.SharedLibrary(target='game.so', source=['src/python/PythonGame.cpp'], LIBS=libraries + game_lib)
+# python_bindings = env.SharedLibrary(target='game.so', source=['src/python/PythonGame.cpp'], LIBS=libraries + game_lib)
 
-Depends(python_bindings, game_lib)
+# Depends(python_bindings, game_lib)
+
+
+test = env.SharedLibrary(target=target, source=Glob('src/*.cpp') + ['src/python/PythonGame.cpp'], LIBS=libraries)
+
 

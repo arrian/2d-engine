@@ -1,7 +1,9 @@
 #include "ScriptManager.h"
 
-#include "PythonModules.h"
+//#include "PythonModules.h"
 #include "ScriptEvent.h"
+#include "Interpreter.h"
+#include "Channel.h"
 
 ScriptManager::ScriptManager()
 {
@@ -35,6 +37,16 @@ python::object ScriptManager::executeFile(string filename)
 {
     python::object result = python::exec_file(python::str(filename), global, global);
     return result;
+}
+
+void ScriptManager::setAttr(string name, python::object obj)
+{
+    global.attr(name.c_str()) = obj;
+}
+
+python::object ScriptManager::getAttr(string name)
+{
+    return global.attr(name.c_str());
 }
 
 string ScriptManager::getError()
